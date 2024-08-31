@@ -1,0 +1,77 @@
+{
+  "Version": 1,
+  "Hash": "rBVCBJlJGPR8n+CR8I7FNKONrKqfiQpmHC4BUSmMvMQ=",
+  "Source": "frontend",
+  "BasePath": "_content/frontend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "frontend\\wwwroot",
+      "Source": "frontend",
+      "ContentRoot": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\",
+      "BasePath": "_content/frontend",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\obj\\Debug\\net8.0\\scopedcss\\bundle\\frontend.styles.css",
+      "SourceId": "frontend",
+      "SourceType": "Computed",
+      "ContentRoot": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "BasePath": "_content/frontend",
+      "RelativePath": "frontend.styles.css",
+      "AssetKind": "All",
+      "AssetMode": "CurrentProject",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ApplicationBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\obj\\Debug\\net8.0\\scopedcss\\bundle\\frontend.styles.css"
+    },
+    {
+      "Identity": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\frontend.bundle.scp.css",
+      "SourceId": "frontend",
+      "SourceType": "Computed",
+      "ContentRoot": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
+      "BasePath": "_content/frontend",
+      "RelativePath": "frontend.bundle.scp.css",
+      "AssetKind": "All",
+      "AssetMode": "Reference",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ProjectBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\frontend.bundle.scp.css"
+    },
+    {
+      "Identity": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\app.css",
+      "SourceId": "frontend",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\",
+      "BasePath": "_content/frontend",
+      "RelativePath": "app.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\app.css"
+    }
+  ]
+}
