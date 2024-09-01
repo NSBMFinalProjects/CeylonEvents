@@ -24,7 +24,16 @@ public class User
     [StringLength(100)]
     public string FullName { get; set; }
 
+    [Required]
+    public int PhoneNo { get; set; }
+
     public List<UserUserRoles> UserRoles { get; set; }
+
+    public List<EventAttendance> Attendances { get; set; }
+
+    public List<Notification> notifications { get; set; }
+
+    public List<Ticket> tickets { get; set; }
 
     public DateTime CreatedAt { get; set; }
 

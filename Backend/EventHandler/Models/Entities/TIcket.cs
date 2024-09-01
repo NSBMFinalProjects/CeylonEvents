@@ -13,7 +13,10 @@ public class Ticket
     [ForeignKey("User")]
     public int UserId { get; set; }
 
-    public string TicketType { get; set; }
+    public string TicketName { get; set; }
+
+    [Required]
+    public int Quantity { get; set; }
 
     public decimal Price { get; set; }
 
