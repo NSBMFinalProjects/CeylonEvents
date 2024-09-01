@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using EventHandler.Models.Entities;
 
 public class UserRole
 {
@@ -11,5 +12,6 @@ public class UserRole
 
     public string Description { get; set; }
 
-    public List<User> Users { get; set; }
+    public List<UserUserRoles> UserRoles { get; set; }
+
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using EventHandler.Models.Entities;
 
 public class User
 {
@@ -23,7 +24,7 @@ public class User
     [StringLength(100)]
     public string FullName { get; set; }
 
-    public List<UserRole> Roles { get; set; }
+    public List<UserUserRoles> UserRoles { get; set; }
 
     public DateTime CreatedAt { get; set; }
 
