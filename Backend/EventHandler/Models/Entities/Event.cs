@@ -31,6 +31,12 @@ public class Event
 
     public DateTime UpdatedAt { get; set; }
 
+    public List<EventAttendance> Attendances { get; set; }
+
+    public List<Notification> notifications { get; set; }
+
+    public List<Ticket> tickets { get; set; }
+
     public List<Session> Sessions { get; set; }
 
     public User Organizer { get; set; }
