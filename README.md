@@ -16,7 +16,7 @@ A comprehensive event management platform built with ASP.NET for the backend and
 - **Frontend:** React.js and Blazor
 - **Databases:** MongoDB for NoSQL data and SQL Server for relational data
 - **Authentication:** ASP.NET Identity with JWT (JSON Web Tokens)
-- **Deployment:** Docker and Kubernetes for containerization and orchestration (optional)
+- **Deployment:** Docker and Kubernetes for containerization and orchestration 
 
 ## Getting Started
 
