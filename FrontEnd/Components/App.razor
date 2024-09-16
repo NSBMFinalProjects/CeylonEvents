@@ -7,12 +7,169 @@
     <base href="/" />
     <link rel="stylesheet" href="app.css" />
     <link rel="stylesheet" href="frontend.styles.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <HeadOutlet />
 </head>
+<style>
+    .loginBtn {
+        transition: 0.3s ease;
+    }
+
+    .loginBtn:hover {
+        box-shadow: 0px 0px 0px 0px !important;
+        background-color: #b61316 !important;
+    }
+
+    .footer {
+        background: #ffffff;
+        color: rgb(0, 0, 0);
+    }
+
+    .footer .links ul {
+        list-style-type: none;
+
+    }
+
+    .footer .links li a {
+        color: rgb(0, 0, 0);
+        transition: 0.2s ease;
+        text-decoration: none !important;
+    }
+
+    .footer .links li a:hover {
+        text-decoration: none;
+        color: #a91215;
+        font-weight: 500;
+    }
+
+    .footer .about-company i {
+        font-size: 25px;
+    }
+
+    .footer .about-company a {
+        color: rgb(0, 0, 0);
+        transition: color 0.2s;
+    }
+
+    .footer .about-company a:hover {
+        color: #4180cb;
+    }
+
+    .footer .location i {
+        font-size: 18px;
+    }
+
+    .footer .copyright p {
+        border-top: 1px solid rgb(0, 0, 0);
+    }
+    .bi{
+        transition: 0.3s ease !important;
+    }
+    .bi:hover{
+        color: #a91215 !important;
+    }
+</style>
 
 <body>
+    <nav class="navbar navbar-expand-lg" style="height: 93px; box-shadow: 0px 2px 10px 0px #929292;">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="Assets/Logo.png" width="272px" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-flex" style="justify-content: space-between;" id="navbarNav">
+                <ul class="navbar-nav" style="gap: 8px; margin-left: auto; margin-right: auto;">
+                    <li class="nav-item">
+                        <a class="nav-link active" style="font-size: 16px; font-weight: bold;" aria-current="page"
+                            href="#">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="font-size: 16px; font-weight: bold;" href=" #">Sports</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="font-size: 16px; font-weight: bold;" href=" #">Other</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="font-size: 16px; font-weight: bold;" href=" #">About-Us</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-5" style="gap: 16px;">
+                    <li class="nav-item">
+                        <a class="nav-link" style="font-size: 16px; font-weight: bold;" href="#">Register</a>
+                    </li>
+                    <li class="nav-item loginBtn"
+                        style="background-color: #a91215; border-radius: 5px; box-shadow: 0px 1px 5px 0px #5e5e5e; ">
+                        <a class="nav-link px-5" style="font-size: 16px; color: white; font-weight: bold;"
+                            href="#">Login</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
     <Routes />
+    <div class="mt-5 pt-5 pb-5 footer" style="box-shadow: 0px -2px 10px 0px #929292;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-xs-12 about-company">
+                    <p class="pr-5">
+                        <strong>CeylonEvents</strong> is one of the fast-growing ticket marketplaces that includes
+                        events of music,
+                        sport, art, theatre, and more. It is capable to accommodate events of all types, sizes,
+                        and complexities with the state-of-the-art technology.
+                    </p>
+                    <div>
+                        <h4 class="mt-lg-0 mt-sm-3" style="color: #a91215;">Follow us on</h4>
+                        <i class="bi bi-facebook me-2"></i> 
+                        <i class="bi bi-instagram me-2"></i>
+                        <i class="bi bi-youtube"></i>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-xs-12 links ps-5">
+                    <h4 class="mt-lg-0 mt-sm-3" style="color: #a91215;">Links</h4>
+                    <ul class="m-0 p-0">
+                        <li> <a href="#">Events</a></li>
+                        <li> <a href="#">Sports</a></li>
+                        <li> <a href="#">Other</a></li>
+                        <li> <a href="#">About-us</a></li>
+                        <li> <a href="#">Privacy & Policy</a></li>
+                        <li> <a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-xs-12 location">
+                    <h4 class="mt-lg-0 mt-sm-4" style="color: #a91215;">Location</h4>
+                    <p>No, 123/4 Gall Rd, Colombo 8.</p>
+                    <h4 class="mt-lg-0 mt-sm-4" style="color: #a91215;">Contact info</h4>
+                    <p class="mb-0"><i class="fa fa-phone mr-3"></i>071 123 1234</p>
+                    <p><i class="fa fa-envelope-o mr-3"></i>info.contact@ceylonevents.lk</p>
+                </div>
+            </div>
+            <img src="Assets/Logo_full_transparent.png" width="300px" style="margin: auto; display: flex; margin-top: 50px;" alt="">
+            <div class="row mt-5">
+                <div class="col copyright">
+                    <p class="">
+                        <small class="">© CeylonEvents 2024. All Rights Reserved.</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <script src="_framework/blazor.web.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
