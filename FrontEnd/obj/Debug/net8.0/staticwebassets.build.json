@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "7A8sLkbHt0mj25WEFDCp0K5YY/bHLPrEtuc4llUE+/A=",
+  "Hash": "nAlgeiKYCUPuHwBhRJ00i6zjlL68g6Zo88SYVZU1QfE=",
   "Source": "frontend",
   "BasePath": "_content/frontend",
   "Mode": "Default",
@@ -186,6 +186,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Assets\\flyer1.jpg"
+    },
+    {
+      "Identity": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\loginGroup.png",
+      "SourceId": "frontend",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\",
+      "BasePath": "_content/frontend",
+      "RelativePath": "Assets/loginGroup.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\loginGroup.png"
     },
     {
       "Identity": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\Logo_full_transparent.png",
