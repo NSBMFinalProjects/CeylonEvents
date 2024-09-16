@@ -1,4 +1,5 @@
 ﻿using EventHandler.Models.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,10 +28,10 @@ namespace EventHandler.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<AppUser>()
-        .HasMany(e => e.Events)
-        .WithOne(e => e.Organizer)
-        .HasForeignKey(e => e.OrganizerId)
-        .OnDelete(DeleteBehavior.Cascade); 
+            .HasMany(e => e.Events)
+            .WithOne(e => e.Organizer)
+            .HasForeignKey(e => e.OrganizerId)
+            .OnDelete(DeleteBehavior.Cascade); 
 
             // AppUser to Tickets (Cascade delete allowed)
             modelBuilder.Entity<AppUser>()
@@ -96,7 +97,13 @@ namespace EventHandler.Data
                 .Property(t => t.Status)
                 .IsRequired()
                 .HasMaxLength(50);
-                
+
+            modelBuilder.Entity<IdentityRole>().HasData(
+                new IdentityRole { Id = "1", Name = "Admin", NormalizedName = "ADMIN" },
+                new IdentityRole { Id = "2", Name = "Buyer", NormalizedName = "BUYER" },
+                new IdentityRole { Id = "3", Name = "Organiser", NormalizedName = "ORGANISER" }
+            );
+
 
 
         }
