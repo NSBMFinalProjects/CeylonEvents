@@ -1,0 +1,88 @@
+﻿<style>
+    .cardContainer {
+        transition: 0.3s ease;
+    }
+
+    .cardContainer:hover {
+        box-shadow: 0px 2px 2px 0px #0000006e !important;
+    }
+    .bookNowBtn{
+        transition: 0.3s ease;
+    }
+    .bookNowBtn:hover {
+        background-color: #b61316 !important;
+    }
+</style> 
+<div class="d-block" style="margin-bottom: 275px;">
+    <div class="position-absolute rounded row cardContainer" style="
+            background-color: rgb(255, 255, 255);
+            width: 542px;
+            height: 175px;
+            box-shadow: 0px 2px 5px 2px #0000006e;
+          ">
+        <div class="col">
+            <img src="Assets/flyer1.jpg" class="img-fluid rounded position-absolute top-50 start-0 translate-middle-y"
+                style="
+                width: 222px;
+                margin-left: 22px !important;
+                margin-top: -70px !important;
+                box-shadow: 0px 2px 5px 2px #0000006e;
+              " alt="..." />
+            <h5 class="position-absolute top-100 start-0 text-danger fw-bold text-center"
+                style="margin-top: -35px; width: 50%">
+                Saturday Party
+            </h5>
+        </div>
+        <div class="col">
+            <div class="col d-flex align-items-center my-2">
+                <img src="Assets/Calendar.png" width="24px" height="24px" alt="" />
+                <p class="text-danger fw-semibold ps-2 m-0">13, September 2024</p>
+            </div>
+            <div class="col d-flex align-items-center my-2">
+                <img src="Assets/Square Clock.png" width="24px" height="24px" alt="" />
+                <p class="text-danger fw-semibold ps-2 m-0">7:00 PM</p>
+            </div>
+            <div class="col d-flex align-items-center">
+                <img src="Assets/Address.png" width="24px" height="24px" alt="" />
+                <p class="ps-2 m-0" style="font-size: 10px">
+                    Ceylonica Beach Hotel Negombo
+                </p>
+            </div>
+            <div>
+                <a class="btn fw-bold bookNowBtn" style="
+                  z-index: 2;
+                  width: 200px;
+                  position: absolute;
+                  bottom: 0;
+                  margin-bottom: 10px;
+                  background-color: #a91215;
+                  color: white;
+                ">Book Now
+                </a>
+                <img src="Assets/Logo_half_transparent.png" style="
+                  z-index: 2;
+                  height: 38px;
+                  position: absolute;
+                  bottom: 0;
+                  right: 0;
+                  margin-bottom: 10px;
+                  margin-right: 18px;
+                " alt="" />
+            </div>
+        </div>
+        <img src="Assets/Vector 1.png" style="
+              width: 245px;
+              bottom: 0;
+              right: 0;
+              margin-right: -12px;
+              margin-bottom: -1px;
+              position: absolute;
+              z-index: 1;
+            " alt="" />
+    </div>
+</div>
+
+
+@code {
+
+}
