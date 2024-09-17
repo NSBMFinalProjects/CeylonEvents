@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "rnt6v3qocw8dM8OrK61q3OYUjsx9pdJjUfH+9i+hSwA=",
+  "Hash": "DoWaherJ3aprwZ3jGyhE+X0+BWHvYOSoc+brmFYpaBI=",
   "Source": "frontend",
   "BasePath": "_content/frontend",
   "Mode": "Default",
@@ -319,6 +319,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Assets\\Logo.png"
+    },
+    {
+      "Identity": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\payment.png",
+      "SourceId": "frontend",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\",
+      "BasePath": "_content/frontend",
+      "RelativePath": "Assets/payment.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\payment.png"
     },
     {
       "Identity": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\registerGroup.png",

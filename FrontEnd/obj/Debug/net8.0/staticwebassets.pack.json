@@ -65,6 +65,10 @@
       "PackagePath": "staticwebassets\\Assets\\loginGroup.png"
     },
     {
+      "Id": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\payment.png",
+      "PackagePath": "staticwebassets\\Assets\\payment.png"
+    },
+    {
       "Id": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\registerGroup.png",
       "PackagePath": "staticwebassets\\Assets\\registerGroup.png"
     },
