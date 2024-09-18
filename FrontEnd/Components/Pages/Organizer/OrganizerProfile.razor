@@ -1,11 +1,11 @@
-﻿@page "/profile"
+﻿@page "/orgprofile"
 @using frontend.Components.index
 
-<PageTitle>Profile</PageTitle>
+<PageTitle>Organizer Profile</PageTitle>
 
 <div class="container mt-5">
     <div class="d-flex" style="justify-content: space-between;">
-        <p class="fw-bold" style="font-size: 32px; color: #a91215;">Hey, Navindu</p>
+        <p class="fw-bold" style="font-size: 32px; color: #a91215;">Hey, Dilshan</p>
         <a class="btn fw-bold loginBtn"
             style="width: 144px; height: 40px; position: relative; z-index: 2; margin-bottom: 10px; background-color: #a91215; color: white;">Logout</a>
     </div>
@@ -19,6 +19,10 @@
         <p class="col fw-semibold" style="color: #0000008d;">Ashen</p>
     </div>
     <div class="row" style="margin-top: -10px;">
+        <p class="col-md-2 fw-semibold" style="color: #a91215;">Organizer ID</p>
+        <p class="col fw-semibold" style="color: #0000008d;">org-a1234</p>
+    </div>
+    <div class="row" style="margin-top: -10px;">
         <p class="col-md-2 fw-semibold" style="color: #a91215;">NIC</p>
         <p class="col fw-semibold" style="color: #0000008d;">1234567890</p>
     </div>
@@ -30,13 +34,18 @@
         <p class="col-md-2 fw-semibold" style="color: #a91215;">Email</p>
         <p class="col fw-semibold" style="color: #0000008d;">navindu158@gmail.com</p>
     </div>
-    <p class="fw-bold mt-5" style="font-size: 24px; color: #a91215;">Booked tickets</p>
+    
+    <div class="d-flex" style="justify-content: space-between;">
+        <p class="fw-bold mt-5" style="font-size: 24px; color: #a91215;">Booked tickets</p>
+        <a class="btn fw-bold loginBtn" href="/addevent"
+            style="width: 144px; height: 40px; position: relative; z-index: 2; margin-bottom: 10px; background-color: #a91215; color: white;">Add Event</a>
+    </div>
     <div class="row row-cols-1 row-cols-md-2 g-5 justify-content-center" style="margin-top: 75px;">
             <div class="col">
-                <EventCard />
+                <OrgEventCard Verified=false/>
             </div>
             <div class="col">
-                <EventCard />
+                <OrgEventCard Verified=true/>
             </div>
         </div>
 </div>

@@ -1,0 +1,79 @@
+﻿@page "/addevent"
+
+<PageTitle>Add Event</PageTitle>
+
+<style>
+    a {
+        text-decoration: none !important;
+    }
+
+    .loginBtn {
+        transition: 0.3s ease;
+    }
+
+    .loginBtn:hover {
+        background-color: #cb1518 !important;
+    }
+</style>
+
+<div class="mt-5 mb-5 mx-auto p-5" style="width: 560px; box-shadow: 0px 3px 5px 2px #0000004e; border-radius: 10px;">
+    <img src="Assets/addEventGroup.png" width="300px" class="d-flex mx-auto mb-3" alt="">
+    <p class="mb-3 text-center fw-semibold" style="margin-top: -15px; letter-spacing: 8px;">Publish your event</p>
+    <p class="mb-3 text-center">Submit your event content to our admins and confirm your event</p>
+    <form class="mt-3" style="width: 100%;">
+        <div class="mb-3">
+            <label for="eventname" class="form-label fw-semibold">Event Name</label>
+            <input type="text" class="form-control" style="height: 42px !important;" id="eventname"
+                placeholder="Enter event name">
+        </div>
+        <div class="mb-3 d-flex" style="gap: 8px;">
+            <div>
+                <label for="date" class="form-label fw-semibold">Date</label>
+                <input type="text" class="form-control" style="height: 42px !important;" id="date"
+                    placeholder="mm/dd/yyyy">
+            </div>
+            <div>
+                <label for="time" class="form-label fw-semibold">Start Time</label>
+                <input type="text" class="form-control" style="height: 42px !important;" id="time" placeholder="hh.mm">
+            </div>
+        </div>
+        <div class="mb-3 d-flex" style="gap: 8px;">
+            <div>
+                <label for="tcount" class="form-label fw-semibold">Tickets count</label>
+                <input type="text" class="form-control" style="height: 42px !important;" id="tcount"
+                    placeholder="Tickets count">
+            </div>
+            <div>
+                <label for="tprice" class="form-label fw-semibold">Ticket price</label>
+                <input type="text" class="form-control" style="height: 42px !important;" id="tprice"
+                    placeholder="Ticket price">
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="pno" class="form-label fw-semibold">Description</label>
+            <input type="text" class="form-control" style="height: 42px !important;" id="pno"
+                placeholder="Enter a description about event">
+        </div>
+        <div class="mb-3">
+            <label for="nic" class="form-label fw-semibold">Event cover image</label>
+            <input multiple="" type="file" _bl_2="">
+        </div>
+        <p class="fw-semibold text-center mt-5" style="font-size: 20px;">NOTE</p>
+        <p class="fw-semibold text-center text-danger" style="margin-top: -10px;">Ensure your event details are correct. You will not able to edit your content after approval.</p>
+
+
+        <div class="mt-5 d-flex" style="gap: 5px;">
+            <a class="btn fw-bold loginBtn"
+                style="width: 100%; margin-bottom: 10px; background-color: #a91215; color: white;">Submit event</a>
+            <img src="Assets/Logo_half_transparent.png" style="height: 38px; margin-bottom: 10px;" alt="" />
+        </div>
+        <div class="mx-auto" style="width: fit-content;">
+            <a class="fw-semibold" href="#" style="color: #a91215; cursor: pointer;">Need help</a>
+        </div>
+
+    </form>
+</div>
+
+@code {
+
+}
