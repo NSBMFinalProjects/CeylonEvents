@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "DoWaherJ3aprwZ3jGyhE+X0+BWHvYOSoc+brmFYpaBI=",
+  "Hash": "eNbbbqoHifeW7fGZdnOei0hP0muACrK1d+eXcU9CYLM=",
   "Source": "frontend",
   "BasePath": "_content/frontend",
   "Mode": "Default",
@@ -17,10 +17,10 @@
   ],
   "Assets": [
     {
-      "Identity": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\obj\\Debug\\net8.0\\scopedcss\\bundle\\frontend.styles.css",
+      "Identity": "e:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\obj\\Debug\\net8.0\\scopedcss\\bundle\\frontend.styles.css",
       "SourceId": "frontend",
       "SourceType": "Computed",
-      "ContentRoot": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "ContentRoot": "e:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
       "BasePath": "_content/frontend",
       "RelativePath": "frontend.styles.css",
       "AssetKind": "All",
@@ -33,13 +33,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\obj\\Debug\\net8.0\\scopedcss\\bundle\\frontend.styles.css"
+      "OriginalItemSpec": "e:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\obj\\Debug\\net8.0\\scopedcss\\bundle\\frontend.styles.css"
     },
     {
-      "Identity": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\frontend.bundle.scp.css",
+      "Identity": "e:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\frontend.bundle.scp.css",
       "SourceId": "frontend",
       "SourceType": "Computed",
-      "ContentRoot": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "e:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/frontend",
       "RelativePath": "frontend.bundle.scp.css",
       "AssetKind": "All",
@@ -52,10 +52,10 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\frontend.bundle.scp.css"
+      "OriginalItemSpec": "e:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\frontend.bundle.scp.css"
     },
     {
-      "Identity": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\app.css",
+      "Identity": "e:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\app.css",
       "SourceId": "frontend",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\",
@@ -74,7 +74,7 @@
       "OriginalItemSpec": "wwwroot\\app.css"
     },
     {
-      "Identity": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\Address.png",
+      "Identity": "e:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\Address.png",
       "SourceId": "frontend",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\",
@@ -93,7 +93,7 @@
       "OriginalItemSpec": "wwwroot\\Assets\\Address.png"
     },
     {
-      "Identity": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\Calendar.png",
+      "Identity": "e:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\Calendar.png",
       "SourceId": "frontend",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\",
@@ -112,7 +112,7 @@
       "OriginalItemSpec": "wwwroot\\Assets\\Calendar.png"
     },
     {
-      "Identity": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\clip1.mp4",
+      "Identity": "e:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\clip1.mp4",
       "SourceId": "frontend",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\",
@@ -131,7 +131,7 @@
       "OriginalItemSpec": "wwwroot\\Assets\\clip1.mp4"
     },
     {
-      "Identity": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\clip2.mp4",
+      "Identity": "e:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\clip2.mp4",
       "SourceId": "frontend",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\",
@@ -150,7 +150,7 @@
       "OriginalItemSpec": "wwwroot\\Assets\\clip2.mp4"
     },
     {
-      "Identity": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\clip3.mp4",
+      "Identity": "e:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\clip3.mp4",
       "SourceId": "frontend",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\",
@@ -169,7 +169,7 @@
       "OriginalItemSpec": "wwwroot\\Assets\\clip3.mp4"
     },
     {
-      "Identity": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\flyer1.jpg",
+      "Identity": "e:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\flyer1.jpg",
       "SourceId": "frontend",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\",
@@ -188,7 +188,7 @@
       "OriginalItemSpec": "wwwroot\\Assets\\flyer1.jpg"
     },
     {
-      "Identity": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\flyer2.png",
+      "Identity": "e:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\flyer2.png",
       "SourceId": "frontend",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\",
@@ -207,7 +207,7 @@
       "OriginalItemSpec": "wwwroot\\Assets\\flyer2.png"
     },
     {
-      "Identity": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\Location.png",
+      "Identity": "e:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\Location.png",
       "SourceId": "frontend",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\",
@@ -226,7 +226,7 @@
       "OriginalItemSpec": "wwwroot\\Assets\\Location.png"
     },
     {
-      "Identity": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\loginGroup.png",
+      "Identity": "e:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\loginGroup.png",
       "SourceId": "frontend",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\",
@@ -245,7 +245,7 @@
       "OriginalItemSpec": "wwwroot\\Assets\\loginGroup.png"
     },
     {
-      "Identity": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\Logo_background_t.png",
+      "Identity": "e:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\Logo_background_t.png",
       "SourceId": "frontend",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\",
@@ -264,7 +264,7 @@
       "OriginalItemSpec": "wwwroot\\Assets\\Logo_background_t.png"
     },
     {
-      "Identity": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\Logo_full_transparent.png",
+      "Identity": "e:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\Logo_full_transparent.png",
       "SourceId": "frontend",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\",
@@ -283,7 +283,7 @@
       "OriginalItemSpec": "wwwroot\\Assets\\Logo_full_transparent.png"
     },
     {
-      "Identity": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\Logo_half_transparent.png",
+      "Identity": "e:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\Logo_half_transparent.png",
       "SourceId": "frontend",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\",
@@ -302,7 +302,7 @@
       "OriginalItemSpec": "wwwroot\\Assets\\Logo_half_transparent.png"
     },
     {
-      "Identity": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\Logo.png",
+      "Identity": "e:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\Logo.png",
       "SourceId": "frontend",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\",
@@ -321,7 +321,7 @@
       "OriginalItemSpec": "wwwroot\\Assets\\Logo.png"
     },
     {
-      "Identity": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\payment.png",
+      "Identity": "e:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\payment.png",
       "SourceId": "frontend",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\",
@@ -340,7 +340,7 @@
       "OriginalItemSpec": "wwwroot\\Assets\\payment.png"
     },
     {
-      "Identity": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\registerGroup.png",
+      "Identity": "e:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\registerGroup.png",
       "SourceId": "frontend",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\",
@@ -359,7 +359,7 @@
       "OriginalItemSpec": "wwwroot\\Assets\\registerGroup.png"
     },
     {
-      "Identity": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\Square Clock.png",
+      "Identity": "e:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\Square Clock.png",
       "SourceId": "frontend",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\",
@@ -378,7 +378,7 @@
       "OriginalItemSpec": "wwwroot\\Assets\\Square Clock.png"
     },
     {
-      "Identity": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\Vector 1.png",
+      "Identity": "e:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\Vector 1.png",
       "SourceId": "frontend",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\",
