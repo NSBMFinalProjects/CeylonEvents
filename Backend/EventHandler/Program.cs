@@ -15,13 +15,25 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 var JWTSetting = builder.Configuration.GetSection("JWTSetting");
 
-builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<EventDbContext>()
-.AddDefaultTokenProviders();
+
 
 builder.Services.AddDbContext<EventDbContext>(options => 
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"));
 });
+
+
+builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
+{
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequiredLength = 4;
+    options.Password.RequiredUniqueChars = 1;
+})
+.AddEntityFrameworkStores<EventDbContext>()
+.AddDefaultTokenProviders();
 
 builder.Services.AddAuthentication(opt => {
     opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -42,6 +54,9 @@ builder.Services.AddAuthentication(opt => {
 
     };
 });
+
+
+
 
 builder.Services.AddSwaggerGen(c => {
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -72,8 +87,10 @@ builder.Services.AddSwaggerGen(c => {
 });
 
 
+
+
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
 
