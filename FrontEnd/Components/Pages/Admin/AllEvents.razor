@@ -1,0 +1,44 @@
+﻿@page "/allevents"
+@using frontend.Components.index
+
+<PageTitle>All Events</PageTitle>
+
+<div class="container my-5">
+    <div class="d-flex" style="justify-content: space-between;">
+        <p class="fw-bold" style="font-size: 32px; color: #a91215;">Pending events</p>
+    </div>
+    <div class="row row-cols-1 row-cols-md-2 g-5 justify-content-center" style="margin-top: 75px;">
+        <div class="col">
+            <OrgEventCard/>
+        </div>
+        <div class="col">
+            <OrgEventCard/>
+        </div>
+    </div>
+
+    <div class="d-flex" style="justify-content: space-between;">
+        <p class="fw-bold" style="font-size: 32px; color: #a91215;">Pending events</p>
+    </div>
+    <div class="row row-cols-1 row-cols-md-2 g-5 justify-content-center" style="margin-top: 75px;">
+        <div class="col">
+            <OrgEventCard Verified=true />
+        </div>
+        <div class="col">
+            <OrgEventCard Verified=true />
+        </div>
+        <div class="col">
+            <OrgEventCard Verified=true />
+        </div>
+        <div class="col">
+            <OrgEventCard Verified=true />
+        </div>
+        <div class="col">
+            <OrgEventCard Verified=true />
+        </div>
+
+    </div>
+</div>
+
+@code {
+
+}

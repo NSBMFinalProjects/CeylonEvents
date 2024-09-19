@@ -1,7 +1,166 @@
 ﻿@page "/"
+@using frontend.Components.index
+@inject NavigationManager NavigationManager
 
-<PageTitle>Home</PageTitle>
+<PageTitle>CeylonEvents</PageTitle>
+<style>
+    .radio-inputs {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        border-radius: 0.5rem;
+        background-color: #a91215;
+        box-sizing: border-box;
+        box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+        padding: 0.25rem;
+        width: 800px;
+        font-size: 14px;
+    }
 
-<h1>Hello, world!</h1>
+    .radio-inputs .radio {
+        flex: 1 1 auto;
+        text-align: center;
+    }
 
-Welcome to your new app.
+    .radio-inputs .radio input {
+        display: none;
+    }
+
+    .radio-inputs .radio .name {
+        display: flex;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.3rem;
+        border: none;
+        padding: .5rem 0;
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+        font-size: 16px;
+        transition: all .15s ease-in-out;
+    }
+
+    .radio-inputs .radio input:checked+.name {
+        background-color: #fff;
+        color: #a91215;
+        font-weight: 600;
+    }
+
+    .seeAllBtn {
+        transition: 0.3s ease;
+    }
+
+    .seeAllBtn:hover {
+        box-shadow: 0px 0px 0px 0px !important;
+        background-color: #b61316 !important;
+    }
+</style>
+<section>
+    <div class="container mt-5">
+        <div>
+            <div class="d-flex" style="margin-bottom: -20px; justify-content: space-between;">
+                <div class="d-flex">
+                    <p style="font-size: 40px; font-weight: 700; color: #a91215; font-family: 'Poppins';">Latest&nbsp;
+                    </p>
+                    <p style="font-size: 40px;  color: #aaaaaa; font-family: 'Poppins';">Events</p>
+                </div>
+                <div class="d-flex" style="align-items: end;">
+                    <p style="font-size: 20px;  color: #aaaaaa; font-family: 'Poppins';">happening this month</p>
+                </div>
+            </div>
+            <div style="width: 178px; height: 5px; background-color: #a91215"></div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 g-5 justify-content-center" style="margin-top: 150px;">
+            <div class="col">
+                <EventCard />
+            </div>
+            <div class="col">
+                <EventCard />
+            </div>
+            <div class="col">
+                <EventCard />
+            </div>
+
+            <div class="col">
+                <EventCard />
+            </div>
+
+
+
+
+        </div>
+    </div>
+</section>
+<div style="width: 100%; height: 5px; background-color: #a91215"></div>
+<section class="mb-5">
+    <div class="container">
+
+        <div class="mt-5 mb-5 mx-auto" style="width: fit-content;">
+            <div class="radio-inputs">
+                <label class="radio">
+                    <input type="radio" name="radio" checked="">
+                    <span class="name">Special Events</span>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="radio">
+                    <span class="name">Musical Events</span>
+                </label>
+
+                <label class="radio">
+                    <input type="radio" name="radio">
+                    <span class="name">Educational Events</span>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="radio">
+                    <span class="name">Other Events</span>
+                </label>
+            </div>
+        </div>
+        <div>
+            <div class="d-flex" style="margin-bottom: -20px; justify-content: space-between;">
+                <div class="d-flex">
+                    <p style="font-size: 40px; font-weight: 700; color: #a91215; font-family: 'Poppins';">Special&nbsp;
+                    </p>
+                    <p style="font-size: 40px; color: #aaaaaa; font-family: 'Poppins';">Events</p>
+                </div>
+                <div class="d-flex" style="align-items: end;">
+                    <p style="font-size: 20px; color: #aaaaaa; font-family: 'Poppins';">happening this month</p>
+                </div>
+            </div>
+            <div style="width: 178px; height: 5px; background-color: #a91215"></div>
+            <div class="row row-cols-1 row-cols-md-2 g-5 justify-content-center" style="margin-top: 150px;">
+                <div class="col">
+                    <EventCard />
+                </div>
+                <div class="col">
+                    <EventCard />
+                </div>
+                <div class="col">
+                    <EventCard />
+                </div>
+            </div>
+        </div>
+        <center>
+            <a href="#" class="btn seeAllBtn"
+                style="background-color: #a91215; font-weight: 500; color: #ffffff; box-shadow: 0px 1px 5px 0px #5e5e5e;">See
+                all
+                events</a>
+        </center>
+    </div>
+</section>
+<div style="width: 100%; height: 5px; background-color: #a91215"></div>
+<section>
+    <div>
+        <video autoplay loop muted style="width: 100%; ">
+            <source src="Assets/clip3.mp4" type="video/mp4">
+        </video>
+    </div>
+</section>
+
+@code {
+    private void HandleCardClick()
+    {
+        Console.WriteLine("EventCard clicked");
+        NavigationManager.NavigateTo("/event");
+    }
+}

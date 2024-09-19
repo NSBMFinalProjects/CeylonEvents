@@ -1,0 +1,117 @@
+﻿@page "/admeventinfo"
+<PageTitle>Admin Event info</PageTitle>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .topContainer {
+        background-image: url("Assets/flyer2.png");
+        backdrop-filter: blur(5px);
+        background-size: cover;
+        background-position: center;
+    }
+
+    .rejectBtn {
+        transition: 0.3s ease;
+    }
+
+    .rejectBtn:hover {
+        background-color: #cb1518 !important;
+    }
+
+    .approveBtn {
+        transition: 0.3s ease;
+    }
+
+    .approveBtn:hover {
+        background-color: #15c623 !important;
+    }
+</style>
+
+<div class="topContainer" style="width: 100%; height: 245px; background-color: #d9d9d9; ">
+    <div class="container d-flex pt-5">
+        <a class="btn fw-semibold approveBtn px-3" href=""
+            style="width: fit-content; height: 40px; background-color: #12a91f; color: white; margin-left: auto;">
+            Approve
+        </a>
+        <a class="btn fw-semibold rejectBtn px-3 ms-3" href=""
+            style="width: fit-content; height: 40px; background-color: #a91215; color: white; ">
+            Reject
+        </a>
+    </div>
+</div>
+<div style="background-color: white; z-index: 2; position: relative;">
+    <div class="container mb-5" style=" ">
+        <div class="row">
+            <div class="col-5">
+                <center style="margin-top: -150px;">
+                    <img src="Assets/flyer2.png" width="425px" alt="">
+                </center>
+            </div>
+            <div class="col">
+                <p class="fw-bold" style="font-size: 40px; color: #a91215;">Lakshapana Waterfall Rope Swing Jump</p>
+                <div class="d-flex" style="gap: 32px;">
+                    <div class="d-flex align-items-center my-2">
+                        <img src="Assets/Calendar.png" width="24px" height="24px" alt="" />
+                        <p class="text-danger fw-semibold ps-2 m-0">13, September 2024</p>
+                    </div>
+                    <div class="d-flex align-items-center my-2">
+                        <img src="Assets/Square Clock.png" width="24px" height="24px" alt="" />
+                        <p class="text-danger fw-semibold ps-2 m-0">7:00 PM</p>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <img src="Assets/Location.png" width="24px" height="24px" alt="" />
+                        <p class="ps-2 m-0 text-danger">
+                            Ceylonica Beach Hotel Negombo
+                        </p>
+                    </div>
+                </div>
+                <div class="d-flex mt-5" style="gap: 5px;">
+                    <a class="btn fw-semibold bookNowBtn"
+                        style="width: 100%; height: 40px; background-color: #a91215; color: white;">
+                        <div class="d-flex px-3" style="justify-content: center;">
+                            <p>15,000 LKR <small style="font-weight: 500; font-size: 10px;"> ( per person )</small></p>
+                        </div>
+                    </a>
+                    <img src="Assets/Logo_half_transparent.png"
+                        style="height: 40px;margin-bottom: 10px; margin-right: 18px; " />
+                </div>
+            </div>
+        </div>
+        <p class="fw-bold mt-3" style="font-size: 40px; color: #a91215;">Description</p>
+        <p style="font-size: 16px; color: #000000;">Come, have fun, and make unforgettable memories with your family,
+            friends, and loved ones!</p>
+        <p style="font-size: 16px; color: #000000; margin-top: -15px;">Come, have fun, and make unforgettable memories
+            with
+            your family, friends, and loved ones!</p>
+
+        <p class="fw-bold" style="font-size: 24px; color: #a91215;">Organizer</p>
+        <div class="row">
+            <p class="col-md-2 fw-semibold" style="color: #a91215;">First Name</p>
+            <p class="col fw-semibold" style="color: #0000008d;">Navindu</p>
+        </div>
+        <div class="row" style="margin-top: -10px;">
+            <p class="col-md-2 fw-semibold" style="color: #a91215;">Last Name</p>
+            <p class="col fw-semibold" style="color: #0000008d;">Ashen</p>
+        </div>
+        <div class="row" style="margin-top: -10px;">
+            <p class="col-md-2 fw-semibold" style="color: #a91215;">NIC</p>
+            <p class="col fw-semibold" style="color: #0000008d;">1234567890</p>
+        </div>
+        <div class="row" style="margin-top: -10px;">
+            <p class="col-md-2 fw-semibold" style="color: #a91215;">Contact number</p>
+            <p class="col fw-semibold" style="color: #0000008d;">0712345678</p>
+        </div>
+        <div class="row" style="margin-top: -10px;">
+            <p class="col-md-2 fw-semibold" style="color: #a91215;">Email</p>
+            <p class="col fw-semibold" style="color: #0000008d;">navindu158@gmail.com</p>
+        </div>
+
+    </div>
+</div>
+
+@code {
+
+}
