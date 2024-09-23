@@ -1,9 +1,23 @@
+using frontend.Authentication;
+using frontend.Clients;
 using frontend.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorComponents();
+builder.Services.AddRazorComponents()
+    .AddInteractiveServerComponents();
+
+builder.Services.AddAuthentication();
+builder.Services.AddCascadingAuthenticationState();
+
+builder.Services.AddOutputCache();
+builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
+
+var eventHandlerAPI = builder.Configuration["EventHandlerApi"] ?? throw new Exception("Backend URL not found");
+builder.Services.AddHttpClient<UserClient>(client => client.BaseAddress = new Uri(eventHandlerAPI));
+
 
 var app = builder.Build();
 
@@ -15,11 +29,17 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-//app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 app.UseAntiforgery();
 
-app.MapRazorComponents<App>();
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.UseOutputCache();
+
+app.MapRazorComponents<App>()
+    .AddInteractiveServerRenderMode();
 
 app.Run();

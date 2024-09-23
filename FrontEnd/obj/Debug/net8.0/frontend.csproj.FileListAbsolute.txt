@@ -6,6 +6,15 @@ E:\Navindu\NSBM\Sem 2\SF\Project\CeylonEvents\frontend\bin\Debug\net8.0\frontend
 E:\Navindu\NSBM\Sem 2\SF\Project\CeylonEvents\frontend\bin\Debug\net8.0\frontend.runtimeconfig.json
 E:\Navindu\NSBM\Sem 2\SF\Project\CeylonEvents\frontend\bin\Debug\net8.0\frontend.dll
 E:\Navindu\NSBM\Sem 2\SF\Project\CeylonEvents\frontend\bin\Debug\net8.0\frontend.pdb
+E:\Navindu\NSBM\Sem 2\SF\Project\CeylonEvents\frontend\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\Navindu\NSBM\Sem 2\SF\Project\CeylonEvents\frontend\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+E:\Navindu\NSBM\Sem 2\SF\Project\CeylonEvents\frontend\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\Navindu\NSBM\Sem 2\SF\Project\CeylonEvents\frontend\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+E:\Navindu\NSBM\Sem 2\SF\Project\CeylonEvents\frontend\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+E:\Navindu\NSBM\Sem 2\SF\Project\CeylonEvents\frontend\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+E:\Navindu\NSBM\Sem 2\SF\Project\CeylonEvents\frontend\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+E:\Navindu\NSBM\Sem 2\SF\Project\CeylonEvents\frontend\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+E:\Navindu\NSBM\Sem 2\SF\Project\CeylonEvents\frontend\obj\Debug\net8.0\frontend.csproj.AssemblyReference.cache
 E:\Navindu\NSBM\Sem 2\SF\Project\CeylonEvents\frontend\obj\Debug\net8.0\frontend.GeneratedMSBuildEditorConfig.editorconfig
 E:\Navindu\NSBM\Sem 2\SF\Project\CeylonEvents\frontend\obj\Debug\net8.0\frontend.AssemblyInfoInputs.cache
 E:\Navindu\NSBM\Sem 2\SF\Project\CeylonEvents\frontend\obj\Debug\net8.0\frontend.AssemblyInfo.cs
@@ -22,6 +31,7 @@ E:\Navindu\NSBM\Sem 2\SF\Project\CeylonEvents\frontend\obj\Debug\net8.0\staticwe
 E:\Navindu\NSBM\Sem 2\SF\Project\CeylonEvents\frontend\obj\Debug\net8.0\scopedcss\Components\Layout\MainLayout.razor.rz.scp.css
 E:\Navindu\NSBM\Sem 2\SF\Project\CeylonEvents\frontend\obj\Debug\net8.0\scopedcss\bundle\frontend.styles.css
 E:\Navindu\NSBM\Sem 2\SF\Project\CeylonEvents\frontend\obj\Debug\net8.0\scopedcss\projectbundle\frontend.bundle.scp.css
+E:\Navindu\NSBM\Sem 2\SF\Project\CeylonEvents\frontend\obj\Debug\net8.0\frontend.csproj.Up2Date
 E:\Navindu\NSBM\Sem 2\SF\Project\CeylonEvents\frontend\obj\Debug\net8.0\frontend.dll
 E:\Navindu\NSBM\Sem 2\SF\Project\CeylonEvents\frontend\obj\Debug\net8.0\refint\frontend.dll
 E:\Navindu\NSBM\Sem 2\SF\Project\CeylonEvents\frontend\obj\Debug\net8.0\frontend.pdb

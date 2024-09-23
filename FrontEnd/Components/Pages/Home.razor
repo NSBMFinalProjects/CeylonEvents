@@ -1,6 +1,7 @@
 ﻿@page "/"
 @using frontend.Components.index
 @inject NavigationManager NavigationManager
+@using Microsoft.AspNetCore.Components.Authorization
 
 <PageTitle>CeylonEvents</PageTitle>
 <style>
@@ -58,17 +59,39 @@
 <section>
     <div class="container mt-5">
         <div>
-            <div class="d-flex" style="margin-bottom: -20px; justify-content: space-between;">
-                <div class="d-flex">
-                    <p style="font-size: 40px; font-weight: 700; color: #a91215; font-family: 'Poppins';">Latest&nbsp;
-                    </p>
-                    <p style="font-size: 40px;  color: #aaaaaa; font-family: 'Poppins';">Events</p>
-                </div>
-                <div class="d-flex" style="align-items: end;">
-                    <p style="font-size: 20px;  color: #aaaaaa; font-family: 'Poppins';">happening this month</p>
-                </div>
-            </div>
+            <AuthorizeView>
+                <NotAuthorized>
+                    <div class="d-flex" style="margin-bottom: -20px; justify-content: space-between;">
+                        <div class="d-flex">
+                            <p style="font-size: 40px; font-weight: 700; color: #a91215; font-family: 'Poppins';">
+                                Latest&nbsp;
+                            </p>
+                            <p style="font-size: 40px;  color: #aaaaaa; font-family: 'Poppins';">Events</p>
+                        </div>
+                        <div class="d-flex" style="align-items: end;">
+                            <p style="font-size: 20px;  color: #aaaaaa; font-family: 'Poppins';">happening this month
+                            </p>
+                        </div>
+                    </div>
+                </NotAuthorized>
+                <Authorized>
+                    <div class="d-flex" style="margin-bottom: -20px; justify-content: space-between;">
+                        <div class="d-flex">
+                            <p style="font-size: 40px; font-weight: 700; color: #a91215; font-family: 'Poppins';">
+                                Hello&nbsp;
+                            </p>
+                            <p style="font-size: 40px;  color: #aaaaaa; font-family: 'Poppins';">Events</p>
+                        </div>
+                        <div class="d-flex" style="align-items: end;">
+                            <p style="font-size: 20px;  color: #aaaaaa; font-family: 'Poppins';">happening this month
+                            </p>
+                        </div>
+                    </div>
+                </Authorized>
+            </AuthorizeView>
+
             <div style="width: 178px; height: 5px; background-color: #a91215"></div>
+
         </div>
         <div class="row row-cols-1 row-cols-md-2 g-5 justify-content-center" style="margin-top: 150px;">
             <div class="col">

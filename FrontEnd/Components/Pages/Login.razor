@@ -1,53 +1,88 @@
 ﻿@page "/login"
+@using Microsoft.AspNetCore.Components.Authorization
+@using frontend.Components.Layout
+@using frontend.Models
+@using frontend.Authentication;
+@using frontend.Clients
+@inject NavigationManager NavigationManager
+@inject UserClient UserClient
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
 <PageTitle>Login</PageTitle>
-<style>
-    a {
-        text-decoration: none !important;
-    }
 
-    .loginBtn {
-        transition: 0.3s ease;
-    }
+@if (login is null)
+{
+    <h3>Loading</h3>
+}
+else
+{
+    <style>
+        a {
+            text-decoration: none !important;
+        }
 
-    .loginBtn:hover {
-        background-color: #cb1518 !important;
-    }
-</style>
+        .loginBtn {
+            transition: 0.3s ease;
+        }
 
-<div class="mt-5 mb-5 mx-auto p-5" style="width: 560px; box-shadow: 0px 3px 5px 2px #0000004e; border-radius: 10px;">
-    <img src="Assets/loginGroup.png" width="200px" class="d-flex mx-auto mb-3" alt="">
-    <p class="mb-3 text-center fw-semibold" style="margin-top: -15px; letter-spacing: 7px;">Welcome Back</p>
-    <p class="mb-3 text-center">Glad to see you again! Sign in to your CeylonEvents account below</p>
-    <form style="width: 100%;">
-        <div class="mb-3">
-            <label for="userEmail" class="form-label fw-semibold">Email</label>
-            <input type="email" class="form-control" style="height: 42px !important;" id="userEmail"
-                placeholder="Enter your email">
-        </div>
-        <div class="mb-3">
-            <label for="userPassword" class="form-label fw-semibold">Password</label>
-            <input type="password" class="form-control" style="height: 42px !important;" id="userPassword"
-                placeholder="******">
-        </div>
-        <div style="width: fit-content; margin-left: auto; margin-top: 10px; margin-bottom: 50px;">
-            <a class="fw-semibold " href="#"
-                style="color: #a91215; text-align: right; width: 100%; cursor: pointer;">Forgot
-                password</a>
-        </div>
+        .loginBtn:hover {
+            background-color: #cb1518 !important;
+        }
+    </style>
 
-        <div class="mt-3 d-flex" style="gap: 5px;">
-            <a class="btn fw-bold loginBtn"
-                style="width: 100%; margin-bottom: 10px; background-color: #a91215; color: white;">Login</a>
-            <img src="Assets/Logo_half_transparent.png" style="height: 38px; margin-bottom: 10px;" alt="" />
-        </div>
-        <div class="mx-auto" style="width: fit-content;">
-            <a class="fw-semibold" href="/register" style="color: #a91215; cursor: pointer;">Create account</a>
-        </div>
+    <div class="mt-5 mb-5 mx-auto p-5" style="width: 560px; box-shadow: 0px 3px 5px 2px #0000004e; border-radius: 10px;">
+        <img src="Assets/loginGroup.png" width="200px" class="d-flex mx-auto mb-3" alt="">
+        <p class="mb-3 text-center fw-semibold" style="margin-top: -15px; letter-spacing: 7px;">Welcome Back</p>
+        <p class="mb-3 text-center">Glad to see you again! Sign in to your CeylonEvents account below</p>
+        <EditForm Model="@login" FormName="logUser" style="width: 100%;" OnValidSubmit="HandleSubmitAsync">
+            <DataAnnotationsValidator />
+            <div class="mb-3">
+                <label for="userEmail" class="form-label fw-semibold">Email</label>
+                <InputText @bind-Value="login.Email" type="email" class="form-control" style="height: 42px !important;"
+                    id="userEmail" placeholder="Enter your email" />
+                <ValidationMessage For="() => login.Email" />
+            </div>
+            <div class="mb-3">
+                <label for="userPassword" class="form-label fw-semibold">Password</label>
+                <InputText @bind-Value="login.Password" type="password" class="form-control"
+                    style="height: 42px !important;" id="userPassword" placeholder="******" />
+                <ValidationMessage For="() => login.Password" />
+            </div>
+            <div style="width: fit-content; margin-left: auto; margin-top: 10px; margin-bottom: 50px;">
+                <a class="fw-semibold " href="#"
+                    style="color: #a91215; text-align: right; width: 100%; cursor: pointer;">Forgot
+                    password</a>
+            </div>
 
-    </form>
-</div>
+            <div class="mt-3 d-flex" style="gap: 5px;">
+                <button class="btn fw-bold loginBtn" type="submit"
+                    style="width: 100%; margin-bottom: 10px; background-color: #a91215; color: white;">Login</button>
+                <img src="Assets/Logo_half_transparent.png" style="height: 38px; margin-bottom: 10px;" alt="" />
+            </div>
+            <div class="mx-auto" style="width: fit-content;">
+                <a class="fw-semibold" href="/register" style="color: #a91215; cursor: pointer;">Create account</a>
+            </div>
+
+        </EditForm>
+    </div>
+}
+
+
 
 @code {
+    [SupplyParameterFromForm]
+    private LoginRequest login { get; set; } = new();
 
+    private async Task HandleSubmitAsync()
+    {
+        ArgumentNullException.ThrowIfNull(login);
+        LoginResponce responce =  await UserClient.LoginUserAsync(login);
+
+        if(responce != null && responce.token != null){
+            await ((CustomAuthStateProvider)AuthenticationStateProvider).MarkUserAsAuthenticatedAsync(responce.token);
+            NavigationManager.NavigateTo("/");
+        }else{
+            NavigationManager.NavigateTo("/login");
+        }  
+    }
 }

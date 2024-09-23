@@ -4,3 +4,36 @@ GET {{EventHandler_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+
+POST {{EventHandler_HostAddress}}/api/user/login
+Content-Type: application/json
+
+{
+  
+  "email": "navindu158@gmail.com",
+  "password": "Navindu@158"
+}
+
+###
+
+POST {{EventHandler_HostAddress}}/api/user/register
+Content-Type: application/json
+
+{
+  "firstName": "string",
+  "lastName": "string",
+  "email": "user@example.com",
+  "password": "string",
+  "phoneNumber": "string"
+}
+
+###
+
+POST {{EventHandler_HostAddress}}/api/user/login
+Content-Type: application/json
+
+{
+  //LoginDto
+}
+
+###

@@ -1,0 +1,122 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+
+<style>
+    .loginBtn {
+        transition: 0.3s ease;
+    }
+
+    .loginBtn:hover {
+        box-shadow: 0px 0px 0px 0px !important;
+        background-color: #b61316 !important;
+    }
+
+    .footer {
+        background: #ffffff;
+        color: rgb(0, 0, 0);
+    }
+
+    .footer .links ul {
+        list-style-type: none;
+
+    }
+
+    .footer .links li a {
+        color: rgb(0, 0, 0);
+        transition: 0.2s ease;
+        text-decoration: none !important;
+    }
+
+    .footer .links li a:hover {
+        text-decoration: none;
+        color: #a91215;
+        font-weight: 500;
+    }
+
+    .footer .about-company i {
+        font-size: 25px;
+    }
+
+    .footer .about-company a {
+        color: rgb(0, 0, 0);
+        transition: color 0.2s;
+    }
+
+    .footer .about-company a:hover {
+        color: #4180cb;
+    }
+
+    .footer .location i {
+        font-size: 18px;
+    }
+
+    .footer .copyright p {
+        border-top: 1px solid rgb(0, 0, 0);
+    }
+
+    .bi {
+        transition: 0.3s ease !important;
+    }
+
+    .bi:hover {
+        color: #a91215 !important;
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg"
+    style="height: 93px; background-color: white; box-shadow: 0px 2px 10px 0px #929292; position: relative; z-index: 5; top: 0;">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="Assets/Logo.png" width="272px" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse d-flex" style="justify-content: space-between;" id="navbarNav">
+            <ul class="navbar-nav" style="gap: 8px; margin-left: auto; margin-right: auto;">
+                <li class="nav-item">
+                    <a class="nav-link active" style="font-size: 16px; font-weight: bold;" aria-current="page"
+                        href="#">Events</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="font-size: 16px; font-weight: bold;" href=" #">Sports</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="font-size: 16px; font-weight: bold;" href=" #">Other</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="font-size: 16px; font-weight: bold;" href=" #">About-Us</a>
+                </li>
+            </ul>
+            <AuthorizeView>
+                <NotAuthorized>
+                    <ul class="navbar-nav ms-5" style="gap: 16px;">
+                        <li class="nav-item">
+                            <a class="nav-link" style="font-size: 16px; font-weight: bold;"
+                                href="/register">Register</a>
+                        </li>
+                        <li class="nav-item loginBtn"
+                            style="background-color: #a91215; border-radius: 5px; box-shadow: 0px 1px 5px 0px #5e5e5e; ">
+                            <a class="nav-link px-5" style="font-size: 16px; color: white; font-weight: bold;"
+                                href="/login">Login</a>
+                        </li>
+                    </ul>
+                </NotAuthorized>
+                <Authorized>
+                    <ul class="navbar-nav ms-5" style="gap: 16px;">
+                        <li class="nav-item loginBtn"
+                            style="background-color: #a91215; border-radius: 5px; box-shadow: 0px 1px 5px 0px #5e5e5e; ">
+                            <a class="nav-link px-5" style="font-size: 16px; color: white; font-weight: bold;"
+                                href="/profile">Hello</a>
+                        </li>
+                    </ul>
+                </Authorized>
+            </AuthorizeView>
+
+        </div>
+    </div>
+</nav>
+
+@code {
+
+}
