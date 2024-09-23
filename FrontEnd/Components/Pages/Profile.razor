@@ -1,48 +1,74 @@
 ﻿@page "/profile"
+@using frontend.Clients
 @using frontend.Components.index
+@using frontend.Models
+@inject UserClient UserClient
 
 <PageTitle>Profile</PageTitle>
 
+
 <div class="container mt-5">
     <div class="d-flex" style="justify-content: space-between;">
-        <p class="fw-bold" style="font-size: 32px; color: #a91215;">Hey, Navindu</p>
+        @if (user is null)
+        {
+            <p class="col-md-2 fw-semibold" style="color: #a91215;">Loading...</p>
+        }
+        else
+        {
+
+            <p class="fw-bold" style="font-size: 32px; color: #a91215;">Hey, @user.FirstName</p>
+        }
         <a class="btn fw-bold loginBtn" href="/logout"
             style="width: 144px; height: 40px; position: relative; z-index: 2; margin-bottom: 10px; background-color: #a91215; color: white;">Logout</a>
     </div>
     <p class="fw-bold" style="font-size: 24px; color: #a91215;">Profile details</p>
-    <div class="row">
-        <p class="col-md-2 fw-semibold" style="color: #a91215;">First Name</p>
-        <p class="col fw-semibold" style="color: #0000008d;">Navindu</p>
-    </div>
-    <div class="row" style="margin-top: -10px;">
-        <p class="col-md-2 fw-semibold" style="color: #a91215;">Last Name</p>
-        <p class="col fw-semibold" style="color: #0000008d;">Ashen</p>
-    </div>
-    <div class="row" style="margin-top: -10px;">
-        <p class="col-md-2 fw-semibold" style="color: #a91215;">NIC</p>
-        <p class="col fw-semibold" style="color: #0000008d;">1234567890</p>
-    </div>
-    <div class="row" style="margin-top: -10px;">
-        <p class="col-md-2 fw-semibold" style="color: #a91215;">Contact number</p>
-        <p class="col fw-semibold" style="color: #0000008d;">0712345678</p>
-    </div>
-    <div class="row" style="margin-top: -10px;">
-        <p class="col-md-2 fw-semibold" style="color: #a91215;">Email</p>
-        <p class="col fw-semibold" style="color: #0000008d;">navindu158@gmail.com</p>
-    </div>
+    @if (user is null)
+    {
+        <p class="col-md-2 fw-semibold" style="color: #a91215;">Loading...</p>
+    }
+    else
+    {
+
+        <div class="row">
+            <p class="col-md-2 fw-semibold" style="color: #a91215;">First Name</p>
+            <p class="col fw-semibold" style="color: #0000008d;">@user.FirstName</p>
+        </div>
+        <div class="row" style="margin-top: -10px;">
+            <p class="col-md-2 fw-semibold" style="color: #a91215;">Last Name</p>
+            <p class="col fw-semibold" style="color: #0000008d;">@user.LastName</p>
+        </div>
+        <div class="row" style="margin-top: -10px;">
+            <p class="col-md-2 fw-semibold" style="color: #a91215;">NIC</p>
+            <p class="col fw-semibold" style="color: #0000008d;">xxxxxxxxxx</p>
+        </div>
+        <div class="row" style="margin-top: -10px;">
+            <p class="col-md-2 fw-semibold" style="color: #a91215;">Contact number</p>
+            <p class="col fw-semibold" style="color: #0000008d;">xxxxxxxxxx</p>
+        </div>
+        <div class="row" style="margin-top: -10px;">
+            <p class="col-md-2 fw-semibold" style="color: #a91215;">Email</p>
+            <p class="col fw-semibold" style="color: #0000008d;">@user.Email</p>
+        </div>
+    }
     <p class="fw-bold mt-5" style="font-size: 24px; color: #a91215;">Booked tickets</p>
     <div class="row row-cols-1 row-cols-md-2 g-5 justify-content-center" style="margin-top: 75px;">
-            <div class="col">
-                <EventCard />
-            </div>
-            <div class="col">
-                <EventCard />
-            </div>
+        <div class="col">
+            <EventCard />
         </div>
+        <div class="col">
+            <EventCard />
+        </div>
+    </div>
 </div>
+
+
 
 <img src="Assets/Logo_background_t.png" style="position: absolute; right: 0; top:0; z-index: 0;" width="490" alt="">
 
 @code {
-
+    private User? user;
+    protected override async Task OnInitializedAsync()
+    {
+        user = await UserClient.GetUserInfo();
+    }
 }

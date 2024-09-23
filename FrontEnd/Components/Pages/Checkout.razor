@@ -1,4 +1,8 @@
 ﻿@page "/checkout"
+@using frontend.Clients
+@using frontend.Models
+@inject UserClient UserClient
+@inject NavigationManager NavigationManager
 
 <PageTitle>Checkout</PageTitle>
 
@@ -20,12 +24,12 @@
                     <div class="mb-3 d-flex" style="gap: 8px; justify-content: space-between;">
                         <div>
                             <label for="fname" class="form-label fw-semibold">First Name</label>
-                            <input type="text" class="form-control" style="height: 42px !important;" id="fname"
+                            <input type="text" value="@user?.FirstName" class="form-control" style="height: 42px !important;" id="fname"
                                 placeholder="Your first name">
                         </div>
                         <div>
                             <label for="lname" class="form-label fw-semibold">Last Name</label>
-                            <input type="text" class="form-control" style="height: 42px !important;" id="lname"
+                            <input type="text" value="@user?.LastName" class="form-control" style="height: 42px !important;" id="lname"
                                 placeholder="Your last name">
                         </div>
                     </div>
@@ -51,7 +55,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label fw-semibold">Email</label>
-                        <input type="email" class="form-control" style="height: 42px !important;" id="email"
+                        <input type="email" value="@user?.Email" class="form-control" style="height: 42px !important;" id="email"
                             placeholder="Enter your email">
                     </div>
 
@@ -97,5 +101,18 @@
 </div>
 
 @code {
-
+    private bool IsLogged = false;
+    private User? user;
+    protected override async Task OnInitializedAsync()
+    {
+        IsLogged = await UserClient.IsUserLogged();
+        if (!IsLogged)
+        {
+            NavigationManager.NavigateTo("/login");
+        }
+        else
+        {
+            user = await UserClient.GetUserInfo();
+        }
+    }
 }
