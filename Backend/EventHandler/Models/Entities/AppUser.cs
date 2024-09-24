@@ -7,6 +7,8 @@ namespace EventHandler.Models.Entities
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
 
+        public string NIC {  get; set; }
+
         public int reqId {  get; set; }
 
         public List<Event> Events { get; set; }
