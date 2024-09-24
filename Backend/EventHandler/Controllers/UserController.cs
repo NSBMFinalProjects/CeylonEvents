@@ -47,7 +47,16 @@ namespace Api.Controllers
 
             await _userManager.AddToRoleAsync(user, "Buyer");
 
-            return Ok("User created successfully");
+            var response = new
+            {
+                FirstName = registerDto.FirstName,  // Assuming RegisterDto has these properties
+                LastName = registerDto.LastName,
+                NIC = registerDto.NIC,
+                ContactNo = registerDto.PhoneNumber,
+                Email = registerDto.Email
+            };
+
+            return Ok(response);
         }
 
         [HttpPost("login")]
