@@ -76,6 +76,38 @@ namespace EventHandler.Migrations
                     b.HasIndex("OrganizerId");
 
                     b.ToTable("Events");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            CreatedAt = new DateTime(2024, 9, 25, 22, 27, 16, 541, DateTimeKind.Local).AddTicks(8416),
+                            Description = "A conference for tech enthusiasts.",
+                            EndDate = new DateTime(2024, 10, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EventName = "Tech Conference 2024",
+                            EventType = "Conference",
+                            Location = "New York",
+                            OrganizerId = "acb56586-313a-423c-9027-55b8d1f04c4e",
+                            Slug = "tech-conference-2024",
+                            StartDate = new DateTime(2024, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 9, 25, 22, 27, 16, 541, DateTimeKind.Local).AddTicks(8425)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 2,
+                            CreatedAt = new DateTime(2024, 9, 25, 22, 27, 16, 541, DateTimeKind.Local).AddTicks(8427),
+                            Description = "A workshop for aspiring designers.",
+                            EndDate = new DateTime(2024, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EventName = "Design Workshop",
+                            EventType = "Workshop",
+                            Location = "San Francisco",
+                            OrganizerId = "acb56586-313a-423c-9027-55b8d1f04c4e",
+                            Slug = "design-workshop-2024",
+                            StartDate = new DateTime(2024, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 9, 25, 22, 27, 16, 541, DateTimeKind.Local).AddTicks(8428)
+                        });
                 });
 
             modelBuilder.Entity("EventHandler.Models.Entities.AppUser", b =>
@@ -175,6 +207,26 @@ namespace EventHandler.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categorys");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Conference",
+                            Slug = "conference"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "WorkShop",
+                            Slug = "workshop"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Concert",
+                            Slug = "concert"
+                        });
                 });
 
             modelBuilder.Entity("EventHandler.Models.Entities.Requests", b =>
@@ -395,6 +447,41 @@ namespace EventHandler.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Tickets");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            EventId = 1,
+                            Price = 299.99m,
+                            PurchaseDate = new DateTime(2024, 9, 25, 22, 27, 16, 541, DateTimeKind.Local).AddTicks(8449),
+                            Quantity = 1,
+                            Status = "Purchased",
+                            TicketName = "VIP Pass",
+                            UserId = "42259ee0-748e-4bb6-9601-17bd762abdbf"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            EventId = 1,
+                            Price = 99.99m,
+                            PurchaseDate = new DateTime(2024, 9, 25, 22, 27, 16, 541, DateTimeKind.Local).AddTicks(8451),
+                            Quantity = 2,
+                            Status = "Purchased",
+                            TicketName = "General Admission",
+                            UserId = "42259ee0-748e-4bb6-9601-17bd762abdbf"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            EventId = 2,
+                            Price = 199.99m,
+                            PurchaseDate = new DateTime(2024, 9, 25, 22, 27, 16, 541, DateTimeKind.Local).AddTicks(8453),
+                            Quantity = 1,
+                            Status = "Purchased",
+                            TicketName = "Workshop Ticket",
+                            UserId = "42259ee0-748e-4bb6-9601-17bd762abdbf"
+                        });
                 });
 
             modelBuilder.Entity("Event", b =>
