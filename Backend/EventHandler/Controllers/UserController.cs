@@ -49,7 +49,7 @@ namespace Api.Controllers
 
             var response = new
             {
-                FirstName = registerDto.FirstName,  // Assuming RegisterDto has these properties
+                FirstName = registerDto.FirstName,  
                 LastName = registerDto.LastName,
                 NIC = registerDto.NIC,
                 ContactNo = registerDto.PhoneNumber,
@@ -116,6 +116,8 @@ namespace Api.Controllers
                 Email = user.Email,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
+                NIC = user.NIC,
+                PhoneNumber = user.PhoneNumber,
             });
         }
 
