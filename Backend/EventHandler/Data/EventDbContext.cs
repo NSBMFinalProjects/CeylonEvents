@@ -1,4 +1,5 @@
 ﻿using EventHandler.Models.Entities;
+using EventHandler.Seed;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -103,6 +104,10 @@ namespace EventHandler.Data
                 new IdentityRole { Id = "2", Name = "Buyer", NormalizedName = "BUYER" },
                 new IdentityRole { Id = "3", Name = "Organiser", NormalizedName = "ORGANISER" }
             );
+
+            CategorySeed.Seed(modelBuilder);
+            EventSeed.Seed(modelBuilder);
+            TicketSeed.Seed(modelBuilder);
 
 
 
