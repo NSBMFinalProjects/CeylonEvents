@@ -2,6 +2,7 @@ using System;
 using System.Text;
 using EventHandler.Data;
 using EventHandler.Models.Entities;
+using EventHandler.Services.EventService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,9 @@ builder.Services.AddDbContext<EventDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"));
 });
+
+builder.Services.AddScoped<IEventRepository, EventRepository>();
+builder.Services.AddScoped<IEventService, EventService>();
 
 
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
