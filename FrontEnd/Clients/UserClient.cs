@@ -1,4 +1,5 @@
 using System;
+using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http.Headers;
 using frontend.Models;
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
@@ -10,19 +11,29 @@ namespace frontend.Clients
         public async Task SetAuthorizedHeader()
         {
             var token = (await localStorage.GetAsync<string>("authToken")).Value;
+
             if (token != null)
             {
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             }
         }
 
+        public async Task<string> GetCurrentUserType()
+        {
+            var role = (await localStorage.GetAsync<string>("role")).Value;
+            return role ?? "Invalid role";
+        }
+
         public async Task<bool> IsUserLogged()
         {
             var token = (await localStorage.GetAsync<string>("authToken")).Value;
+
             if (token != null)
             {
                 return true;
-            }else{
+            }
+            else
+            {
                 return false;
             }
         }

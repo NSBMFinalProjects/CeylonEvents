@@ -1,6 +1,10 @@
 ﻿@inherits LayoutComponentBase
+@using Blazored.Toast.Configuration
 @using frontend.Components.index
 
-<NavBar/>
+<NavBar />
 @Body
-<Footer/>
+
+<BlazoredToasts Position="ToastPosition.BottomRight" Timeout="5" />
+
+<Footer />

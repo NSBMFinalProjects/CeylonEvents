@@ -1,12 +1,12 @@
 ﻿@page "/login"
 @using Microsoft.AspNetCore.Components.Authorization
-@using frontend.Components.Layout
 @using frontend.Models
 @using frontend.Authentication;
 @using frontend.Clients
 @inject NavigationManager NavigationManager
 @inject UserClient UserClient
 @inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IToastService toastService
 
 <PageTitle>Login</PageTitle>
 
@@ -80,8 +80,10 @@ else
 
         if(responce != null && responce.token != null){
             await ((CustomAuthStateProvider)AuthenticationStateProvider).MarkUserAsAuthenticatedAsync(responce.token);
+            toastService.ShowSuccess("Welcome to CeylonEvents!");
             NavigationManager.NavigateTo("/");
         }else{
+            toastService.ShowError("Invalid credentials! Check your email and password.");
             NavigationManager.NavigateTo("/login");
         }  
     }

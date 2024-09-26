@@ -1,4 +1,10 @@
 ﻿@using Microsoft.AspNetCore.Components.Authorization
+@using frontend.Clients
+@inject IToastService toastService
+@inject NavigationManager NavigationManager
+@inject UserClient UserClient
+
+@rendermode InteractiveServer
 
 <style>
     .loginBtn {
@@ -103,21 +109,61 @@
                     </ul>
                 </NotAuthorized>
                 <Authorized>
-                    <ul class="navbar-nav ms-5" style="gap: 16px;">
+                    @if (Role == "Buyer")
+                    {
+                        <ul class="navbar-nav ms-5" style="gap: 16px;">
+                            <li class="nav-item loginBtn"
+                                style="background-color: #a91215; border-radius: 5px; box-shadow: 0px 1px 2px 0px #5e5e5e; ">
+                                <a class="nav-link px-5" style="font-size: 16px; color: white; font-weight: bold;"
+                                    href="/profile">User Profile</a>
+                            </li>
+                        </ul>
+                    }
+                    else if (Role == "Admin")
+                    {
+                        <ul class="navbar-nav ms-5" style="gap: 16px;">
+                            <li class="nav-item loginBtn"
+                                style="background-color: #a91215; border-radius: 5px; box-shadow: 0px 1px 2px 0px #5e5e5e; ">
+                                <a class="nav-link px-5" style="font-size: 16px; color: white; font-weight: bold;"
+                                    href="/admprofile">Admin Profile</a>
+                            </li>
+                        </ul>
                         
-                        <li class="nav-item loginBtn"
-                            style="background-color: #a91215; border-radius: 5px; box-shadow: 0px 1px 5px 0px #5e5e5e; ">
-                            <a class="nav-link px-5" style="font-size: 16px; color: white; font-weight: bold;"
-                                href="/profile">User Profile</a>
-                        </li>
-                    </ul>
+                    }
+                    else if (Role == "Organiser")
+                    {
+                        <ul class="navbar-nav ms-5" style="gap: 16px;">
+                            <li class="nav-item loginBtn"
+                                style="background-color: #a91215; border-radius: 5px; box-shadow: 0px 1px 2px 0px #5e5e5e; ">
+                                <a class="nav-link px-5" style="font-size: 16px; color: white; font-weight: bold;"
+                                    href="/orgprofile">Organizer Profile</a>
+                            </li>
+                        </ul>
+                        
+                    }
                 </Authorized>
             </AuthorizeView>
-    
+
         </div>
     </div>
 </nav>
 
 @code {
+    private bool IsLogged = false;
+    private string Role = "";
+    protected override async Task OnInitializedAsync()
+    {
+        IsLogged = await UserClient.IsUserLogged();
+        if (IsLogged)
+        {
+            Role = await UserClient.GetCurrentUserType();
+            Console.WriteLine("Role: " + Role);
+            if (Role == "Invalid role")
+            {
+                toastService.ShowError("Invalid login. Please contact the administration.");
+                NavigationManager.NavigateTo("/logout");
+            }
+        }
+    }
 
 }
