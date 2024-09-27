@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Security.Claims;
 using EventHandler.Data;
 using EventHandler.Dto;
@@ -36,6 +37,7 @@ namespace EventHandler.Controllers
 
             var eventDto = new EventDto
             {
+
                 EventId = eventEntity.Id,
                 EventName = eventEntity.EventName,
                 EventDate = eventEntity.StartDate.ToShortDateString(),
@@ -61,6 +63,7 @@ namespace EventHandler.Controllers
 
             var eventDtos = eventEntites.Select(eventEntity => new EventDto
             {
+
                 EventId = eventEntity.Id,
                 EventName = eventEntity.EventName,
                 EventDate = eventEntity.StartDate.ToShortDateString(),
@@ -76,7 +79,8 @@ namespace EventHandler.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Organiser")]
-        public async Task<IActionResult> CreateEvent([FromBody] EventWithTicketsDto eventDto)
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> CreateEvent([FromBody] EventWithTicketsDto eventDto, [FromForm] IFormFile imageFile)
         {
             
             if (eventDto == null)
@@ -121,6 +125,45 @@ namespace EventHandler.Controllers
                     return BadRequest("Ticket price cannot be negative.");
                 }
             }
+
+            string uniqueFileName = null;
+
+            if (eventDto.Image != null)
+            {
+
+
+                var uplodadFolder = Path.Combine(Directory.GetCurrentDirectory(),"Uploads");
+
+                if (!Directory.Exists(uplodadFolder))
+                {
+                    Directory.CreateDirectory(uplodadFolder);
+                }
+
+                if (imageFile == null || imageFile.Length == 0)
+                {
+                    return BadRequest("An event image is required.");
+                }
+
+                var allowedExtensions = new[] { ".jpg", ".jpeg" };
+                var fileExtension = Path.GetExtension(imageFile.FileName).ToLowerInvariant();
+
+                if (!allowedExtensions.Contains(fileExtension))
+                {
+                    return BadRequest("Only JPG or JPEG files are allowed.");
+                }
+
+
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + eventDto.Image.FileName;
+
+                var filePath= Path.Combine(uplodadFolder, uniqueFileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await eventDto.Image.CopyToAsync(fileStream);
+                }
+            }
+
+
             var loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier); 
 
             
@@ -131,13 +174,14 @@ namespace EventHandler.Controllers
 
             var eventEntity = new Event
             {
-                OrganizerId = eventDto.OrganizerId,
+                OrganizerId = loggedInUserId,
                 EventName = eventDto.EventName,
                 Description = eventDto.Description,
                 StartDate = eventDto.StartDate,
                 EndDate = eventDto.EndDate,
                 Location = eventDto.Location,
                 CategoryId = eventDto.CategoryId,
+                Image= uniqueFileName,
                 tickets = eventDto.Tickets.Select(t => new Ticket
                 {
                     TicketName = t.TicketName,
