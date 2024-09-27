@@ -105,12 +105,37 @@ namespace EventHandler.Data
                 new IdentityRole { Id = "3", Name = "Organiser", NormalizedName = "ORGANISER" }
             );
 
+            var hasher = new PasswordHasher<AppUser>();
+
+            var organiserUser = new AppUser
+            {
+                Id = "organiser-id-001",
+                FirstName = "John",
+                LastName = "Doe",
+                NIC = "123456789321456",
+                UserName = "organiser",
+                NormalizedUserName = "ORGANISER",
+                Email = "organiser@example.com",
+                NormalizedEmail = "ORGANISER@EXAMPLE.COM",
+                EmailConfirmed = true,
+                PasswordHash = hasher.HashPassword(null, "Organiser@123") 
+
+            };
+
+            modelBuilder.Entity<AppUser>().HasData(organiserUser);
+
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(
+               new IdentityUserRole<string>
+               {
+                   UserId = "organiser-id-001",  
+                   RoleId = "3"                 
+               }
+            );
+
+
             CategorySeed.Seed(modelBuilder);
             EventSeed.Seed(modelBuilder);
             TicketSeed.Seed(modelBuilder);
-
-
-
         }
 
 
