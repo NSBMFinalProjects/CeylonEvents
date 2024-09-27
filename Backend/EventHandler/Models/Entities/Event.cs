@@ -14,7 +14,6 @@ public class Event
 
     public string EventName { get; set; }
 
-    public string Slug { get; set; }
 
     public string Description { get; set; }
 
@@ -23,12 +22,6 @@ public class Event
     public DateTime EndDate { get; set; }
 
     public string Location { get; set; }
-
-    public string EventType { get; set; }
-
-    public DateTime CreatedAt { get; set; }
-
-    public DateTime UpdatedAt { get; set; }
 
     public int CategoryId { get; set; }
 

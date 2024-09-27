@@ -10,7 +10,7 @@ public class Ticket
     
     public int EventId { get; set; }
 
-    public string UserId { get; set; }
+    public string? UserId { get; set; }
 
     public string TicketName { get; set; }
 
@@ -19,11 +19,11 @@ public class Ticket
 
     public decimal Price { get; set; }
 
-    public DateTime PurchaseDate { get; set; }
+    public DateTime? PurchaseDate { get; set; }
 
-    public string Status { get; set; }
+    public string Status { get; set; } = "Available";
 
     public Event Event { get; set; }
 
-    public AppUser AppUser { get; set; }
+    public AppUser? AppUser { get; set; }
 }
