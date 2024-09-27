@@ -1,16 +1,18 @@
-﻿public class EventRequestModel
+﻿public class EventWithTicketsDto
 {
-    public string Name { get; set; }
-    public DateTime Date { get; set; }
+    public string OrganizerId { get; set; }
+    public string EventName { get; set; }
+    public string Description { get; set; }
+    public DateTime StartDate { get; set; }
+    public DateTime EndDate { get; set; }
     public string Location { get; set; }
-    public int CategoryId { get; set; }  // CategoryId to relate to the category
-    public string OrganizerId { get; set; } // OrganizerId to relate to the organizer
-    public List<TicketRequestModel> Tickets { get; set; }
+    public int CategoryId { get; set; }
+    public List<TicketDto> Tickets { get; set; }
 }
 
-public class TicketRequestModel
+public class TicketDto
 {
-    public decimal Price { get; set; }
+    public string TicketName { get; set; }
     public int Quantity { get; set; }
-    public string TicketType { get; set; }
+    public decimal Price { get; set; }
 }
