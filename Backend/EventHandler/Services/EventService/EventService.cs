@@ -1,4 +1,5 @@
 ﻿
+using EventHandler.Dto;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 
@@ -20,5 +21,8 @@ namespace EventHandler.Services.EventService
         {
             return await _eventrepository.GetAllEventsAsync();
         }
+
+        
+        
     }
 }
