@@ -1,3 +1,5 @@
+@import '_content/Blazored.Toast/Blazored.Toast.bundle.scp.css';
+
 /* _content/frontend/Components/Layout/MainLayout.razor.rz.scp.css */
 #blazor-error-ui[b-hm2q4ff5zl] {
     background: lightyellow;

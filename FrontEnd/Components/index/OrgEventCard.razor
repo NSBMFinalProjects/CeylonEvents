@@ -1,4 +1,7 @@
-﻿<style>
+﻿@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+<style>
     .cardContainer {
         transition: 0.3s ease;
     }
@@ -8,11 +11,11 @@
     }
 </style>
 
-<div style="margin-bottom: 120px; cursor: pointer;">
+<div style="margin-bottom: 120px; cursor: pointer;" @onclick="@(()=>NavigationManager.NavigateTo("/orgevent"))">
     <div class="row rounded cardContainer" style="box-shadow: 0px 2px 5px 2px #0000006e;">
         <div class="col">
             <center style="margin-top: -100px !important;">
-                <img src="Assets/flyer1.jpg" class="img-fluid rounded" style="
+                <img src="@CardImgUrl" class="img-fluid rounded" style="
                 width: 222px;
                 box-shadow: 0px 2px 5px 2px #0000006e;
 
@@ -20,23 +23,23 @@
             </center>
 
             <h5 class="text-danger fw-bold text-center pt-3 pb-3">
-                Saturday Party
+                @EventName
             </h5>
         </div>
         <div class="col d-flex flex-column" style="justify-content: space-around;">
             <div>
                 <div class="d-flex align-items-center my-2">
                     <img src="Assets/Calendar.png" width="24px" height="24px" alt="" />
-                    <p class="text-danger fw-semibold ps-2 m-0">13, September 2024</p>
+                    <p class="text-danger fw-semibold ps-2 m-0">@Date</p>
                 </div>
                 <div class="d-flex align-items-center my-2">
                     <img src="Assets/Square Clock.png" width="24px" height="24px" alt="" />
-                    <p class="text-danger fw-semibold ps-2 m-0">7:00 PM</p>
+                    <p class="text-danger fw-semibold ps-2 m-0">@Time</p>
                 </div>
                 <div class="d-flex align-items-center">
                     <img src="Assets/Address.png" width="24px" height="24px" alt="" />
                     <p class="ps-2 m-0" style="font-size: 10px">
-                        Ceylonica Beach Hotel Negombo
+                        @Location
                     </p>
                 </div>
             </div>
@@ -66,6 +69,16 @@
 @code {
     [Parameter]
     public required bool Verified { get; set; }
+    [Parameter]
+    public required string EventName { get; set; }
+    [Parameter]
+    public required string Date { get; set; }
+    [Parameter]
+    public required string Time { get; set; }
+    [Parameter]
+    public required string Location { get; set; }
+    [Parameter]
+    public required string CardImgUrl { get; set; }
 
     private bool verified = false;
 
@@ -73,6 +86,7 @@
     {
         verified = Verified;
     }
+
 
 
 }

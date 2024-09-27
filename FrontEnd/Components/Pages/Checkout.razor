@@ -3,6 +3,7 @@
 @using frontend.Models
 @inject UserClient UserClient
 @inject NavigationManager NavigationManager
+@inject IToastService toastService
 
 <PageTitle>Checkout</PageTitle>
 
@@ -24,13 +25,13 @@
                     <div class="mb-3 d-flex" style="gap: 8px; justify-content: space-between;">
                         <div>
                             <label for="fname" class="form-label fw-semibold">First Name</label>
-                            <input type="text" value="@user?.FirstName" class="form-control" style="height: 42px !important;" id="fname"
-                                placeholder="Your first name">
+                            <input type="text" value="@user?.FirstName" class="form-control"
+                                style="height: 42px !important;" id="fname" placeholder="Your first name">
                         </div>
                         <div>
                             <label for="lname" class="form-label fw-semibold">Last Name</label>
-                            <input type="text" value="@user?.LastName" class="form-control" style="height: 42px !important;" id="lname"
-                                placeholder="Your last name">
+                            <input type="text" value="@user?.LastName" class="form-control"
+                                style="height: 42px !important;" id="lname" placeholder="Your last name">
                         </div>
                     </div>
                     <div class="mb-3">
@@ -55,16 +56,26 @@
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label fw-semibold">Email</label>
-                        <input type="email" value="@user?.Email" class="form-control" style="height: 42px !important;" id="email"
-                            placeholder="Enter your email">
+                        <input type="email" value="@user?.Email" class="form-control" style="height: 42px !important;"
+                            id="email" placeholder="Enter your email">
                     </div>
 
+                    @if (!IsConditionsAccepted)
+                    {
+                        <div class="mt-5 d-flex" style="gap: 5px;">
+                            <a class="btn fw-bold loginBtn"
+                                style="width: 100%; margin-bottom: 10px; background-color: #a91215; color: white;">Proceed</a>
+                            <img src="Assets/Logo_half_transparent.png" style="height: 38px; margin-bottom: 10px;" alt="" />
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="mt-5 d-flex" style="gap: 5px;">
+                            <a class="btn"
+                                style="cursor: default; width: 100%; margin-bottom: 10px; background-color: #7e0d0e; color: white;">Pleace check the Tearms and condition</a>
+                        </div>
+                    }
 
-                    <div class="mt-5 d-flex" style="gap: 5px;">
-                        <a class="btn fw-bold loginBtn"
-                            style="width: 100%; margin-bottom: 10px; background-color: #a91215; color: white;">Proceed</a>
-                        <img src="Assets/Logo_half_transparent.png" style="height: 38px; margin-bottom: 10px;" alt="" />
-                    </div>
 
                 </form>
             </div>
@@ -89,7 +100,8 @@
 
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked
+                    @onchange="@(()=>ChangeConditionsAccepted())">
                 <label class="form-check-label" for="flexCheckChecked">
                     I accept and agree to Terms and Conditions
                 </label>
@@ -102,6 +114,8 @@
 
 @code {
     private bool IsLogged = false;
+
+    private bool IsConditionsAccepted = true;
     private User? user;
     protected override async Task OnInitializedAsync()
     {
@@ -114,5 +128,10 @@
         {
             user = await UserClient.GetUserInfo();
         }
+    }
+
+    private void ChangeConditionsAccepted()
+    {
+        IsConditionsAccepted = !IsConditionsAccepted;
     }
 }

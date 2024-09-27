@@ -1,3 +1,4 @@
+using Blazored.Toast;
 using frontend.Authentication;
 using frontend.Clients;
 using frontend.Components;
@@ -9,8 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+builder.Services.AddBlazoredToast();
+
 builder.Services.AddAuthentication();
 builder.Services.AddCascadingAuthenticationState();
+
 
 builder.Services.AddOutputCache();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();

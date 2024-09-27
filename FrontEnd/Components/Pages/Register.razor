@@ -3,6 +3,7 @@
 @using frontend.Models
 @inject NavigationManager NavigationManager
 @inject UserClient UserClient
+@inject IToastService toastService
 
 <PageTitle>Register</PageTitle>
 
@@ -52,11 +53,11 @@ else
                     id="pno" placeholder="+94 xxxxxxxxx" />
                 <ValidationMessage For="() => user.PhoneNumber" />
             </div>
-            @* <div class="mb-3">
-        <label for="nic" class="form-label fw-semibold">NIC</label>
-        <InputText @bind-Value="user.UserNIC" type="text" class="form-control" style="height: 42px !important;" id="nic"
-        placeholder="Enter your NIC"/>
-        </div> *@
+            <div class="mb-3">
+                <label for="nic" class="form-label fw-semibold">NIC</label>
+                <InputText @bind-Value="user.Nic" type="text" class="form-control" style="height: 42px !important;"
+                    id="nic" placeholder="Enter your NIC" />
+            </div>
             <div class="mb-3">
                 <label for="email" class="form-label fw-semibold">Email</label>
                 <InputText @bind-Value="user.Email" type="email" class="form-control" style="height: 42px !important;"
@@ -71,8 +72,8 @@ else
             </div>
             <div class="mb-3">
                 <label for="confirmPassword" class="form-label fw-semibold">Confirm Password</label>
-                <InputText @bind-Value="user.ConfirmePassword" type="password" class="form-control" style="height: 42px !important;" id="confirmPassword"
-                    placeholder="******"/>
+                <InputText @bind-Value="user.ConfirmePassword" type="password" class="form-control"
+                    style="height: 42px !important;" id="confirmPassword" placeholder="******" />
                 <ValidationMessage For="() => user.ConfirmePassword" />
             </div>
 
@@ -89,8 +90,6 @@ else
     </div>
 }
 
-
-
 @code {
     [SupplyParameterFromForm]
     private User user { get; set; } = new();
@@ -99,7 +98,7 @@ else
     {
         ArgumentNullException.ThrowIfNull(user);
         await UserClient.RegisterUserAsync(user);
-
+        toastService.ShowSuccess("Registration Success! Login with your credentials.");
         NavigationManager.NavigateTo("/login");
     }
 

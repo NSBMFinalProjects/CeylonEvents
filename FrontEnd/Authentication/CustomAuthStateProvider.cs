@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 
 namespace frontend.Authentication
 {
-
     public class CustomAuthStateProvider(ProtectedLocalStorage localStorage) : AuthenticationStateProvider
     {
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
@@ -16,9 +15,25 @@ namespace frontend.Authentication
             return new AuthenticationState(user);
         }
 
+        public string GetUserType(string token)
+        {
+            var handler = new JwtSecurityTokenHandler();
+            var jsonToken = handler.ReadToken(token);
+            var tokenS = jsonToken as JwtSecurityToken;
+
+            var Role = tokenS?.Claims.First(claim => claim.Type == "role").Value;
+            if(Role == null){
+                return "Invalid role access";
+            }
+            return Role;
+        }
+
+
         public async Task MarkUserAsAuthenticatedAsync(string token)
         {
+            var Role = GetUserType(token);
             await localStorage.SetAsync("authToken", token);
+            await localStorage.SetAsync("role", Role);
             var identity = GetClaimsIdentity(token);
             var user = new ClaimsPrincipal(identity);
             NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(user)));
@@ -35,11 +50,10 @@ namespace frontend.Authentication
         public async Task MarkUserAsLoggedOut()
         {
             await localStorage.DeleteAsync("authToken");
+            await localStorage.DeleteAsync("role");
             var identity = new ClaimsIdentity();
             var user = new ClaimsPrincipal(identity);
             NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(user)));
         }
     }
 }
-
-

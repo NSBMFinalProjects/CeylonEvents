@@ -1,8 +1,11 @@
 ﻿@page "/profile"
+@using Microsoft.Extensions.Logging
 @using frontend.Clients
 @using frontend.Components.index
 @using frontend.Models
 @inject UserClient UserClient
+@inject IToastService toastService
+@inject NavigationManager NavigationManager
 
 <PageTitle>Profile</PageTitle>
 
@@ -18,7 +21,7 @@
 
             <p class="fw-bold" style="font-size: 32px; color: #a91215;">Hey, @user.FirstName</p>
         }
-        <a class="btn fw-bold loginBtn" href="/logout"
+        <a class="btn fw-bold loginBtn" href="/logout" @onclick="@(()=>toastService.ShowInfo("Logged out successfully!"))"
             style="width: 144px; height: 40px; position: relative; z-index: 2; margin-bottom: 10px; background-color: #a91215; color: white;">Logout</a>
     </div>
     <p class="fw-bold" style="font-size: 24px; color: #a91215;">Profile details</p>
@@ -28,7 +31,6 @@
     }
     else
     {
-
         <div class="row">
             <p class="col-md-2 fw-semibold" style="color: #a91215;">First Name</p>
             <p class="col fw-semibold" style="color: #0000008d;">@user.FirstName</p>
@@ -39,11 +41,11 @@
         </div>
         <div class="row" style="margin-top: -10px;">
             <p class="col-md-2 fw-semibold" style="color: #a91215;">NIC</p>
-            <p class="col fw-semibold" style="color: #0000008d;">xxxxxxxxxx</p>
+            <p class="col fw-semibold" style="color: #0000008d;">@user.Nic</p>
         </div>
         <div class="row" style="margin-top: -10px;">
             <p class="col-md-2 fw-semibold" style="color: #a91215;">Contact number</p>
-            <p class="col fw-semibold" style="color: #0000008d;">xxxxxxxxxx</p>
+            <p class="col fw-semibold" style="color: #0000008d;">@user.PhoneNumber</p>
         </div>
         <div class="row" style="margin-top: -10px;">
             <p class="col-md-2 fw-semibold" style="color: #a91215;">Email</p>
@@ -51,12 +53,14 @@
         </div>
     }
     <p class="fw-bold mt-5" style="font-size: 24px; color: #a91215;">Booked tickets</p>
-    <div class="row row-cols-1 row-cols-md-2 g-5 justify-content-center" style="margin-top: 75px;">
+    <div class="row row-cols-1 row-cols-md-2 g-5 " style="margin-top: 75px;">
         <div class="col">
-            <EventCard />
+            <EventCard EventName="Saturday Night" Date="12, September 2024" Time="7.00 PM onwards"
+                    Location="Cinomaon Lakeside Colombo" CardImgUrl="Assets/flyer1.jpg" />
         </div>
         <div class="col">
-            <EventCard />
+            <EventCard EventName="Rope Jumping" Date="18, September 2024" Time="9.00 AM onwards"
+                    Location="Lakshapana Waterfalls" CardImgUrl="Assets/flyer2.png" />
         </div>
     </div>
 </div>
@@ -67,8 +71,20 @@
 
 @code {
     private User? user;
+    private bool IsLogged = false;
     protected override async Task OnInitializedAsync()
     {
-        user = await UserClient.GetUserInfo();
+        IsLogged = await UserClient.IsUserLogged();
+        if (!IsLogged)
+        {
+            toastService.ShowError("Unauthorized access. Please log in again.");
+            NavigationManager.NavigateTo("/login");
+        }
+        else
+        {
+            user = await UserClient.GetUserInfo();
+        }
     }
+
+    
 }
