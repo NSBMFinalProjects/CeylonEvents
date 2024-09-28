@@ -10,6 +10,8 @@
             public string EventTicketPrice { get; set; }
             public string EventDescription { get; set; }
             public string EventCategory { get; set; }
+            public string EventImage { get; set; }
+
 
     }
 }
