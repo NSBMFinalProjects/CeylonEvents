@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Security.Claims;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using EventHandler.Data;
 using EventHandler.Dto;
+using EventHandler.Helper;
 using EventHandler.Services.EventService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -17,13 +20,15 @@ namespace EventHandler.Controllers
         private readonly IEventService _eventService;
         private readonly IEventRepository _eventRepository;
         private readonly EventDbContext _context;
+        private readonly UploadHandler _uploadHandler;
 
 
-        public EventController(IEventService eventService, IEventRepository eventRepository, EventDbContext context)
+        public EventController(IEventService eventService, IEventRepository eventRepository, EventDbContext context,UploadHandler uploadHandler)
         {
             _eventRepository = eventRepository;
             _eventService = eventService;
             _context= context;
+            _uploadHandler = uploadHandler;
         }
 
         [HttpGet("{id}")]
@@ -34,7 +39,7 @@ namespace EventHandler.Controllers
             {
                 return NotFound();
             }
-
+            var imageUrl = $"{Request.Scheme}://{Request.Host}/Uploads/{eventEntity.Image}";
             var eventDto = new EventDto
             {
 
@@ -45,7 +50,8 @@ namespace EventHandler.Controllers
                 EventLocation = eventEntity.Location,
                 EventTicketPrice = eventEntity.tickets?.FirstOrDefault()?.Price.ToString("c") ?? "no tickets",
                 EventDescription = eventEntity.Description,
-                EventCategory = eventEntity.category.Name
+                EventCategory = eventEntity.category.Name,
+                EventImage= imageUrl,
             };
 
             return Ok(eventDto);
@@ -61,6 +67,8 @@ namespace EventHandler.Controllers
                 return NotFound(" no events Found");
             }
 
+            
+
             var eventDtos = eventEntites.Select(eventEntity => new EventDto
             {
 
@@ -72,6 +80,10 @@ namespace EventHandler.Controllers
                 EventTicketPrice = eventEntity.tickets?.FirstOrDefault()?.Price.ToString("c") ?? "no tickets",
                 EventDescription = eventEntity.Description,
                 EventCategory = eventEntity.category.Name,
+                EventImage = eventEntity.Image != null
+                            ? $"{Request.Scheme}://{Request.Host}/Uploads/{eventEntity.Image}"
+                            : null,
+
             }).ToList();
 
             return Ok(eventDtos);
@@ -80,15 +92,15 @@ namespace EventHandler.Controllers
         [HttpPost]
         [Authorize(Roles = "Organiser")]
         [Consumes("multipart/form-data")]
-        public async Task<IActionResult> CreateEvent([FromBody] EventWithTicketsDto eventDto, [FromForm] IFormFile imageFile)
+        public async Task<IActionResult> CreateEvent([FromForm] EventWithTicketsDto eventDto, [FromForm] string tickets, [FromForm] IFormFile imageFile)
         {
-            
-            if (eventDto == null)
+            //cheak for validation
+            if (eventDto == null|| imageFile==null)
             {
-                return BadRequest("Event details are required.");
+                return BadRequest(new { Message = "Invalid user data or file" });
             }
 
-            if (string.IsNullOrWhiteSpace(eventDto.EventName))
+            if(string.IsNullOrWhiteSpace(eventDto.EventName))
             {
                 return BadRequest("Event name is required.");
             }
@@ -126,47 +138,17 @@ namespace EventHandler.Controllers
                 }
             }
 
-            string uniqueFileName = null;
+            //handle File Upload
+            var result = await _uploadHandler.UploadAsync(imageFile);
 
-            if (eventDto.Image != null)
+            if (result.StartsWith("Extension is not valid") || result.StartsWith("Maximum size"))
             {
-
-
-                var uplodadFolder = Path.Combine(Directory.GetCurrentDirectory(),"Uploads");
-
-                if (!Directory.Exists(uplodadFolder))
-                {
-                    Directory.CreateDirectory(uplodadFolder);
-                }
-
-                if (imageFile == null || imageFile.Length == 0)
-                {
-                    return BadRequest("An event image is required.");
-                }
-
-                var allowedExtensions = new[] { ".jpg", ".jpeg" };
-                var fileExtension = Path.GetExtension(imageFile.FileName).ToLowerInvariant();
-
-                if (!allowedExtensions.Contains(fileExtension))
-                {
-                    return BadRequest("Only JPG or JPEG files are allowed.");
-                }
-
-
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + eventDto.Image.FileName;
-
-                var filePath= Path.Combine(uplodadFolder, uniqueFileName);
-
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    await eventDto.Image.CopyToAsync(fileStream);
-                }
+                return BadRequest(new { Message = result });
             }
 
-
+            //get current user and assign to userid
             var loggedInUserId = User.FindFirstValue(ClaimTypes.NameIdentifier); 
 
-            
             if (eventDto.OrganizerId != loggedInUserId)
             {
                 return StatusCode(403, new { message = "You are not authorized to create this event." });
@@ -181,7 +163,7 @@ namespace EventHandler.Controllers
                 EndDate = eventDto.EndDate,
                 Location = eventDto.Location,
                 CategoryId = eventDto.CategoryId,
-                Image= uniqueFileName,
+                Image= result,
                 tickets = eventDto.Tickets.Select(t => new Ticket
                 {
                     TicketName = t.TicketName,
