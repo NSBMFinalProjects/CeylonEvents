@@ -1,11 +1,14 @@
 using System;
 using System.Text;
 using EventHandler.Data;
+using EventHandler.Helper;
 using EventHandler.Models.Entities;
 using EventHandler.Services.EventService;
+using EventHandler.Services.FileUpload;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using RestApiwithDB.Helper;
@@ -24,6 +27,7 @@ builder.Services.AddDbContext<EventDbContext>(options =>
 
 builder.Services.AddScoped<IEventRepository, EventRepository>();
 builder.Services.AddScoped<IEventService, EventService>();
+builder.Services.AddTransient<UploadHandler>();
 
 
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
@@ -58,9 +62,6 @@ builder.Services.AddAuthentication(opt => {
     };
 });
 
-
-
-
 builder.Services.AddSwaggerGen(c => {
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
@@ -89,15 +90,18 @@ builder.Services.AddSwaggerGen(c => {
 
 });
 
-
-
-
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
 
 var app = builder.Build();
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Uploads")),
+    RequestPath = "/Uploads"
+});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
