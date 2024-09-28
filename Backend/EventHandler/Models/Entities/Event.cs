@@ -23,6 +23,8 @@ public class Event
 
     public string Location { get; set; }
 
+    public string? Image { get; set; }
+
     public int CategoryId { get; set; }
 
     public Category category { get; set; }
