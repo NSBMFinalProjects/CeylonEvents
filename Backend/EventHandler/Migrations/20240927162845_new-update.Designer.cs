@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventHandler.Migrations
 {
     [DbContext(typeof(EventDbContext))]
-    [Migration("20240927045512_upded")]
-    partial class upded
+    [Migration("20240927162845_new-update")]
+    partial class newupdate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -47,10 +47,6 @@ namespace EventHandler.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("EventType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -69,32 +65,6 @@ namespace EventHandler.Migrations
                     b.HasIndex("OrganizerId");
 
                     b.ToTable("Events");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CategoryId = 1,
-                            Description = "A conference for tech enthusiasts.",
-                            EndDate = new DateTime(2024, 10, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EventName = "Tech Conference 2024",
-                            EventType = "Conference",
-                            Location = "New York",
-                            OrganizerId = "acb56586-313a-423c-9027-55b8d1f04c4e",
-                            StartDate = new DateTime(2024, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CategoryId = 2,
-                            Description = "A workshop for aspiring designers.",
-                            EndDate = new DateTime(2024, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EventName = "Design Workshop",
-                            EventType = "Workshop",
-                            Location = "San Francisco",
-                            OrganizerId = "acb56586-313a-423c-9027-55b8d1f04c4e",
-                            StartDate = new DateTime(2024, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("EventHandler.Models.Entities.AppUser", b =>
@@ -424,7 +394,6 @@ namespace EventHandler.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -434,41 +403,6 @@ namespace EventHandler.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Tickets");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            EventId = 1,
-                            Price = 299.99m,
-                            PurchaseDate = new DateTime(2024, 9, 27, 10, 25, 11, 359, DateTimeKind.Local).AddTicks(6672),
-                            Quantity = 1,
-                            Status = "Purchased",
-                            TicketName = "VIP Pass",
-                            UserId = "42259ee0-748e-4bb6-9601-17bd762abdbf"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            EventId = 1,
-                            Price = 99.99m,
-                            PurchaseDate = new DateTime(2024, 9, 27, 10, 25, 11, 359, DateTimeKind.Local).AddTicks(6691),
-                            Quantity = 2,
-                            Status = "Purchased",
-                            TicketName = "General Admission",
-                            UserId = "42259ee0-748e-4bb6-9601-17bd762abdbf"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            EventId = 2,
-                            Price = 199.99m,
-                            PurchaseDate = new DateTime(2024, 9, 27, 10, 25, 11, 359, DateTimeKind.Local).AddTicks(6693),
-                            Quantity = 1,
-                            Status = "Purchased",
-                            TicketName = "Workshop Ticket",
-                            UserId = "42259ee0-748e-4bb6-9601-17bd762abdbf"
-                        });
                 });
 
             modelBuilder.Entity("Event", b =>
@@ -563,8 +497,7 @@ namespace EventHandler.Migrations
                     b.HasOne("EventHandler.Models.Entities.AppUser", "AppUser")
                         .WithMany("Tickets")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("AppUser");
 

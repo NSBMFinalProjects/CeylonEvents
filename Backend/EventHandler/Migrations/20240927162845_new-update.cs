@@ -7,19 +7,19 @@
 namespace EventHandler.Migrations
 {
     /// <inheritdoc />
-    public partial class addedroles : Migration
+    public partial class newupdate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.InsertData(
-                table: "AspNetRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                table: "Categorys",
+                columns: new[] { "Id", "Name", "Slug" },
                 values: new object[,]
                 {
-                    { "1", null, "Admin", "ADMIN" },
-                    { "2", null, "Buyer", "BUYER" },
-                    { "3", null, "Organiser", "ORGANISER" }
+                    { 1, "Conference", "conference" },
+                    { 2, "WorkShop", "workshop" },
+                    { 3, "Concert", "concert" }
                 });
         }
 
@@ -27,19 +27,19 @@ namespace EventHandler.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DeleteData(
-                table: "AspNetRoles",
+                table: "Categorys",
                 keyColumn: "Id",
-                keyValue: "1");
+                keyValue: 1);
 
             migrationBuilder.DeleteData(
-                table: "AspNetRoles",
+                table: "Categorys",
                 keyColumn: "Id",
-                keyValue: "2");
+                keyValue: 2);
 
             migrationBuilder.DeleteData(
-                table: "AspNetRoles",
+                table: "Categorys",
                 keyColumn: "Id",
-                keyValue: "3");
+                keyValue: 3);
         }
     }
 }

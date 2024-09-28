@@ -16,54 +16,11 @@
         background-color: #b61316 !important;
     }
 
-    .footer {
-        background: #ffffff;
-        color: rgb(0, 0, 0);
-    }
-
-    .footer .links ul {
-        list-style-type: none;
-
-    }
-
-    .footer .links li a {
-        color: rgb(0, 0, 0);
-        transition: 0.2s ease;
-        text-decoration: none !important;
-    }
-
-    .footer .links li a:hover {
-        text-decoration: none;
-        color: #a91215;
-        font-weight: 500;
-    }
-
-    .footer .about-company i {
-        font-size: 25px;
-    }
-
-    .footer .about-company a {
-        color: rgb(0, 0, 0);
-        transition: color 0.2s;
-    }
-
-    .footer .about-company a:hover {
-        color: #4180cb;
-    }
-
-    .footer .location i {
-        font-size: 18px;
-    }
-
-    .footer .copyright p {
-        border-top: 1px solid rgb(0, 0, 0);
-    }
-
-    .bi {
+    .navBarLink {
         transition: 0.3s ease !important;
     }
 
-    .bi:hover {
+    .navBarLink:hover {
         color: #a91215 !important;
     }
 </style>
@@ -81,17 +38,17 @@
         <div class="collapse navbar-collapse d-flex" style="justify-content: space-between;" id="navbarNav">
             <ul class="navbar-nav" style="gap: 8px; margin-left: auto; margin-right: auto; ">
                 <li class="nav-item">
-                    <a class="nav-link active" style="font-size: 16px; font-weight: bold;" aria-current="page"
-                        href="#">Events</a>
+                    <a class="nav-link navBarLink fw-semibold" style="font-size: 16px; color: #aaaaaa;" aria-current="page"
+                        href="#events" >Events</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="font-size: 16px; font-weight: bold;" href=" #">Sports</a>
+                    <a class="nav-link navBarLink fw-semibold" style="font-size: 16px; color: #aaaaaa;" href="#cat">Categories</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="font-size: 16px; font-weight: bold;" href=" #">Other</a>
+                    <a class="nav-link navBarLink fw-semibold" style="font-size: 16px; color: #aaaaaa;" href=" #contact">Contact Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="font-size: 16px; font-weight: bold;" href=" #">About-Us</a>
+                    <a class="nav-link navBarLink fw-semibold" style="font-size: 16px; color: #aaaaaa;" href=" #about">About</a>
                 </li>
             </ul>
             <AuthorizeView>
@@ -128,7 +85,7 @@
                                     href="/admprofile">Admin Profile</a>
                             </li>
                         </ul>
-                        
+
                     }
                     else if (Role == "Organiser")
                     {
@@ -139,7 +96,7 @@
                                     href="/orgprofile">Organizer Profile</a>
                             </li>
                         </ul>
-                        
+
                     }
                 </Authorized>
             </AuthorizeView>
@@ -164,6 +121,12 @@
                 NavigationManager.NavigateTo("/logout");
             }
         }
+    }
+
+    public void NavbarRefresh()
+    {
+        NavigationManager.Refresh();
+        Console.WriteLine("Refreshed...........");
     }
 
 }

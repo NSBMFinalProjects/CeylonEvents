@@ -5,6 +5,8 @@
 @inject NavigationManager NavigationManager
 @inject IToastService toastService
 
+@rendermode InteractiveServer
+
 <PageTitle>Checkout</PageTitle>
 
 <style>
@@ -12,9 +14,17 @@
         background-color: #a91215 !important;
         border-color: #a91215 !important;
     }
+
+    .ticketsBtn {
+        transition: 0.3s ease;
+    }
+
+    .ticketsBtn:hover {
+        background-color: #cb1518 !important;
+    }
 </style>
 
-<div class="container mt-5 mb-5">
+<div class="container" style="margin-top: 100px; margin-bottom: 100px;">
     <div class="row">
         <div class="col">
             <p class="fw-bold" style="font-size: 32px; color: #a91215;">Bank Details</p>
@@ -60,7 +70,7 @@
                             id="email" placeholder="Enter your email">
                     </div>
 
-                    @if (!IsConditionsAccepted)
+                    @if (IsConditionsAccepted)
                     {
                         <div class="mt-5 d-flex" style="gap: 5px;">
                             <a class="btn fw-bold loginBtn"
@@ -72,7 +82,8 @@
                     {
                         <div class="mt-5 d-flex" style="gap: 5px;">
                             <a class="btn"
-                                style="cursor: default; width: 100%; margin-bottom: 10px; background-color: #7e0d0e; color: white;">Pleace check the Tearms and condition</a>
+                                style="cursor: default; width: 100%; margin-bottom: 10px; background-color: #7e0d0e; color: white;">Pleace
+                                check the Tearms and condition</a>
                         </div>
                     }
 
@@ -84,18 +95,30 @@
             <p class="fw-bold" style="font-size: 32px; color: #a91215;">Booking Details</p>
             <div style="background-color: black; width: 100%; height: 2px;"></div>
             <div class="mt-3" style="width: 100%;">
+                 <p class="fw-semibold">Tickets count</p>
+                <div class="d-flex" style="justify-content: space-between; margin-top: -10px;">
+                    <div class="d-flex my-auto" style="gap: 20px; align-items: center;">
+                        <button class="btn fw-bold ticketsBtn" style="background-color: #a91215; color: white;"
+                            @onclick="@(()=>DecrementTickets())">-</button>
+                        <p class="fw-semibold mt-3">@TicketCount</p>
+                        <button class="btn fw-bold ticketsBtn" style="background-color: #a91215; color: white;"
+                            @onclick="@(()=>IncremetTickets())">+</button>
+                    </div>
+                    <p>@TotalTicketPrice LKR</p>
+                </div>
+                <div class="mt-3" style="background-color: black; width: 100%; height: 2px;"></div>
                 <div class="d-flex" style="justify-content: space-between;">
-                    <p class="fw-semibold">Sub Total</p>
-                    <p>15 000 LKR</p>
+                    <p class="fw-semibold">Total</p>
+                    <p>@TotalTicketPrice LKR</p>
                 </div>
                 <div class="d-flex" style="justify-content: space-between; margin-top: -10px;">
                     <p class="fw-semibold">Taxes</p>
-                    <p>1 000 LKR</p>
+                    <p>1000 LKR</p>
                 </div>
                 <div class="mt-5" style="background-color: black; width: 100%; height: 2px;"></div>
                 <div class="d-flex mt-3" style="justify-content: space-between; ">
                     <p class="fw-semibold" style="color: #a91215; font-size: 24px;">Sub Total</p>
-                    <p class="fw-semibold" style="color: #a91215; font-size: 24px;">16 000 LKR</p>
+                    <p class="fw-semibold" style="color: #a91215; font-size: 24px;">@(TotalTicketPrice + 1000) LKR</p>
                 </div>
 
             </div>
@@ -114,7 +137,9 @@
 
 @code {
     private bool IsLogged = false;
-
+    private int TicketCount;
+    private int TicketPrice;
+    private int TotalTicketPrice;
     private bool IsConditionsAccepted = true;
     private User? user;
     protected override async Task OnInitializedAsync()
@@ -127,11 +152,31 @@
         else
         {
             user = await UserClient.GetUserInfo();
+            TicketCount = 1;
+            TicketPrice = 12000;
+            TotalTicketPrice = TicketPrice;
         }
     }
 
     private void ChangeConditionsAccepted()
     {
         IsConditionsAccepted = !IsConditionsAccepted;
+    }
+    private void IncremetTickets()
+    {
+        TicketCount++;
+        TotalTicketPrice = TicketPrice * TicketCount;
+    }
+    private void DecrementTickets()
+    {
+        if (TicketCount == 1)
+        {
+            toastService.ShowError("There should be at least one ticket.");
+        }
+        else
+        {
+            TicketCount--;
+            TotalTicketPrice = TicketPrice * TicketCount;
+        }
     }
 }

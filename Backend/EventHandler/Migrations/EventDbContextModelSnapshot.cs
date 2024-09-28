@@ -62,30 +62,6 @@ namespace EventHandler.Migrations
                     b.HasIndex("OrganizerId");
 
                     b.ToTable("Events");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CategoryId = 1,
-                            Description = "A conference for tech enthusiasts.",
-                            EndDate = new DateTime(2024, 10, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EventName = "Tech Conference 2024",
-                            Location = "New York",
-                            OrganizerId = "acb56586-313a-423c-9027-55b8d1f04c4e",
-                            StartDate = new DateTime(2024, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CategoryId = 2,
-                            Description = "A workshop for aspiring designers.",
-                            EndDate = new DateTime(2024, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EventName = "Design Workshop",
-                            Location = "San Francisco",
-                            OrganizerId = "acb56586-313a-423c-9027-55b8d1f04c4e",
-                            StartDate = new DateTime(2024, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("EventHandler.Models.Entities.AppUser", b =>
@@ -164,28 +140,6 @@ namespace EventHandler.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "organiser-id-001",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "a891df8f-9057-4671-9cda-6a4615a44706",
-                            Email = "organiser@example.com",
-                            EmailConfirmed = true,
-                            FirstName = "John",
-                            LastName = "Doe",
-                            LockoutEnabled = false,
-                            NIC = "123456789321456",
-                            NormalizedEmail = "ORGANISER@EXAMPLE.COM",
-                            NormalizedUserName = "ORGANISER",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEAmjkidswNQUyRxhhX+tdI0YdFPLtk7u+j8E9+Lvh2eSdc8C8sZ9UwVJ+Hi2bl2Xw==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "e1fc2a41-3d5e-4a27-985d-a9989fa6f7cc",
-                            TwoFactorEnabled = false,
-                            UserName = "organiser",
-                            reqId = 0
-                        });
                 });
 
             modelBuilder.Entity("EventHandler.Models.Entities.Category", b =>
@@ -385,13 +339,6 @@ namespace EventHandler.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "organiser-id-001",
-                            RoleId = "3"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -453,41 +400,6 @@ namespace EventHandler.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Tickets");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            EventId = 1,
-                            Price = 299.99m,
-                            PurchaseDate = new DateTime(2024, 9, 27, 19, 9, 19, 901, DateTimeKind.Local).AddTicks(5425),
-                            Quantity = 1,
-                            Status = "Purchased",
-                            TicketName = "VIP Pass",
-                            UserId = "42259ee0-748e-4bb6-9601-17bd762abdbf"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            EventId = 1,
-                            Price = 99.99m,
-                            PurchaseDate = new DateTime(2024, 9, 27, 19, 9, 19, 901, DateTimeKind.Local).AddTicks(5439),
-                            Quantity = 2,
-                            Status = "Purchased",
-                            TicketName = "General Admission",
-                            UserId = "42259ee0-748e-4bb6-9601-17bd762abdbf"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            EventId = 2,
-                            Price = 199.99m,
-                            PurchaseDate = new DateTime(2024, 9, 27, 19, 9, 19, 901, DateTimeKind.Local).AddTicks(5441),
-                            Quantity = 1,
-                            Status = "Purchased",
-                            TicketName = "Workshop Ticket",
-                            UserId = "42259ee0-748e-4bb6-9601-17bd762abdbf"
-                        });
                 });
 
             modelBuilder.Entity("Event", b =>
