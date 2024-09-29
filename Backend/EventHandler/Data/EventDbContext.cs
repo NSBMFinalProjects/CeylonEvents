@@ -67,14 +67,16 @@ namespace EventHandler.Data
                 .HasMany(c => c.Events)
                 .WithOne(e => e.category)
                 .HasForeignKey(e => e.CategoryId)
-                .OnDelete(DeleteBehavior.Restrict);  
+                .OnDelete(DeleteBehavior.Restrict);
 
-            
+
             modelBuilder.Entity<Event>()
                 .HasMany(e => e.tickets)
                 .WithOne(t => t.Event)
                 .HasForeignKey(t => t.EventId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+
 
             modelBuilder.Entity<Requests>()
                 .HasKey(r => r.ReqId);
@@ -131,6 +133,32 @@ namespace EventHandler.Data
                    RoleId = "3"                 
                }
             );
+
+            var adminUser = new AppUser
+            {
+                Id = "Admin-id-001",
+                FirstName = "kavindu",
+                LastName = "dilshan",
+                NIC = "2001065080956",
+                UserName = "admin",
+                NormalizedUserName = "ADMIN",
+                Email = "admin@example.com",
+                NormalizedEmail = "ADMIN@EXAMPLE.COM",
+                EmailConfirmed = true,
+                PasswordHash = hasher.HashPassword(null, "Admin@123")
+
+            };
+
+            modelBuilder.Entity<AppUser>().HasData(adminUser);
+
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(
+                new IdentityUserRole<string>
+                {
+                    UserId= "Admin-id-001",
+                    RoleId = "1"
+                }
+                );
+
 
 
             CategorySeed.Seed(modelBuilder);
