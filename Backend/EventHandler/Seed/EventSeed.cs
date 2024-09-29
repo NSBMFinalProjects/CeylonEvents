@@ -14,7 +14,9 @@ public static class EventSeed
                 StartDate = new DateTime(2024, 10, 15),
                 EndDate = new DateTime(2024, 10, 17),
                 Location = "New York",
-                CategoryId = 1
+                CategoryId = 1,
+                EventType= "Approved"
+
             },
             new Event
             {
@@ -25,7 +27,8 @@ public static class EventSeed
                 StartDate = new DateTime(2024, 11, 10),
                 EndDate = new DateTime(2024, 11, 12),
                 Location = "San Francisco",
-                CategoryId = 2
+                CategoryId = 2,
+                EventType= "Approved"
             }
         );
     }
