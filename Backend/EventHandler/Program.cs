@@ -4,7 +4,6 @@ using EventHandler.Data;
 using EventHandler.Helper;
 using EventHandler.Models.Entities;
 using EventHandler.Services.EventService;
-using EventHandler.Services.FileUpload;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
