@@ -41,6 +41,7 @@ namespace EventHandler.Services.EventService
             return await _context.Events
                 .Include(e => e.category)
                 .Include(e => e.Organizer)
+                .Include(e => e.tickets)
                 .FirstOrDefaultAsync(e => e.Id == eventId);
         }
 
