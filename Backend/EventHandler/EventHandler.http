@@ -41,3 +41,7 @@ Content-Type: application/json
 GET {{EventHandler_HostAddress}}/api/user
 
 ###
+
+GET {{EventHandler_HostAddress}}/api/event/0
+
+###

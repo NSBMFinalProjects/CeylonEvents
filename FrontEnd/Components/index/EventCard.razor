@@ -18,7 +18,7 @@
     }
 </style>
 
-<div style="margin-bottom: 120px; cursor: pointer;" @onclick="@(()=>NavigationManager.NavigateTo("/event"))">
+<div style="margin-bottom: 120px; cursor: pointer;" @onclick="@(()=>CreateCardTravelUrl())">
     <div class="row rounded cardContainer" style="box-shadow: 0px 2px 5px 2px #0000006e;">
         <div class="col">
             <center style="margin-top: -100px !important;">
@@ -50,10 +50,18 @@
                 </div>
             </div>
             <div class="d-flex" style="gap: 5px;">
-                <a class="btn fw-semibold bookNowBtn"
-                    style="width: 100%; height: 40px; background-color: #a91215; color: white;">
-                    Book Now
-                </a>
+                @if (IsEventPreview)
+                {
+                    <a class="btn fw-semibold bookNowBtn"
+                        style="width: 100%; height: 40px; background-color: #a91215; color: white;">
+                        5 Tickets
+                    </a>
+                }else{
+                    <a class="btn fw-semibold bookNowBtn"
+                        style="width: 100%; height: 40px; background-color: #a91215; color: white;">
+                        Book Now
+                    </a>
+                }
                 <img src="Assets/Logo_half_transparent.png"
                     style="height: 40px;margin-bottom: 10px; margin-right: 18px; " />
             </div>
@@ -73,8 +81,20 @@
     public required string Location { get; set; }
     [Parameter]
     public required string CardImgUrl { get; set; }
+    [Parameter]
+    public bool IsEventPreview { get; set; } = false;
 
-
+    private void CreateCardTravelUrl()
+    {
+        if (!IsEventPreview)
+        {
+            NavigationManager.NavigateTo("/event");
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/eventprw");
+        }
+    }
 
 
 }

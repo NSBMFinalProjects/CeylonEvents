@@ -162,8 +162,6 @@ namespace EventHandler.Data
 
 
             CategorySeed.Seed(modelBuilder);
-            EventSeed.Seed(modelBuilder);
-            TicketSeed.Seed(modelBuilder);
         }
 
 

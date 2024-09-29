@@ -7,6 +7,7 @@
 @inject UserClient UserClient
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject IToastService toastService
+@using frontend.Components.index
 
 <PageTitle>Login</PageTitle>
 
@@ -80,8 +81,8 @@ else
 
         if(responce != null && responce.token != null){
             await ((CustomAuthStateProvider)AuthenticationStateProvider).MarkUserAsAuthenticatedAsync(responce.token);
-            toastService.ShowSuccess("Welcome to CeylonEvents!");
             NavigationManager.NavigateTo("/");
+            NavigationManager.Refresh(true);
         }else{
             toastService.ShowError("Invalid credentials! Check your email and password.");
             NavigationManager.NavigateTo("/login");
