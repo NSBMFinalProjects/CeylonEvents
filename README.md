@@ -20,4 +20,4 @@ A comprehensive event management platform built with ASP.NET for the backend and
 
 ## Getting Started
 
-Follow the instructions in the README to set up the project locally. Contributions are welcome!
+Follow the instructions in the README to set up the project locally.
