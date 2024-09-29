@@ -25,6 +25,8 @@ public class Event
 
     public string? Image { get; set; }
 
+    public string? EventType { get; set; } = "Pending";
+
     public int CategoryId { get; set; }
 
     public Category category { get; set; }
