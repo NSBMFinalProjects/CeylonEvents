@@ -5,11 +5,11 @@ using Microsoft.VisualBasic;
 
 namespace EventHandler.Services.EventService
 {
-    public class EventService : IEventService
+    public class Eventservice : IEventService
     {
         private readonly IEventRepository _eventrepository;
 
-        public EventService(IEventRepository eventRepository)
+        public Eventservice(IEventRepository eventRepository)
         {
             _eventrepository = eventRepository;
         }
