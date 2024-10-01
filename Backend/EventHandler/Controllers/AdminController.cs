@@ -49,7 +49,9 @@ namespace EventHandler.Controllers
                 EventLocation = e.Location,
                 EventTicketPrice = e.tickets != null && e.tickets.Any() ? $"{e.tickets.First().Price}" : "No tickets",
                 EventDescription = e.Description,
-                EventImage = e.Image,
+                EventImage = e.Image != null
+                            ? $"{Request.Scheme}://{Request.Host}/Uploads/{e.Image}"
+                            : null,
             }).ToList();
 
             var eventDtosPending = eventsPending.Select(e => new EventCategoryDto
@@ -61,7 +63,9 @@ namespace EventHandler.Controllers
                 EventLocation = e.Location,
                 EventTicketPrice = e.tickets != null && e.tickets.Any() ? $"{e.tickets.First().Price}" : "No tickets",
                 EventDescription = e.Description,
-                EventImage = e.Image,
+                EventImage = e.Image != null
+                            ? $"{Request.Scheme}://{Request.Host}/Uploads/{e.Image}"
+                            : null,
             }).ToList();
 
             var Result = new

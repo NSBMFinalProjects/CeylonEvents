@@ -128,7 +128,9 @@ namespace EventHandler.Controllers
                 EventLocation = e.Location,
                 EventTicketPrice = e.tickets?.FirstOrDefault()?.Price.ToString("c") ?? "no tickets",
                 EventDescription = e.Description,
-                EventImage = e.Image
+                EventImage = e.Image != null
+                            ? $"{Request.Scheme}://{Request.Host}/Uploads/{e.Image}"
+                            : null,
             }).ToList();
 
             return Ok(eventDtos);
