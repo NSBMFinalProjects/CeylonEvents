@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
@@ -101,6 +102,11 @@ namespace Api.Controllers
         {
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+            if (currentUserId is null)
+            {
+                return BadRequest("user id is null");
+            }
+
             var user = await _userManager.FindByIdAsync(currentUserId!);
 
             if (user is null)
@@ -111,14 +117,65 @@ namespace Api.Controllers
                 });
             }
 
-            return Ok(new UserDto
+            var eventId = await _context.Purchases
+
+                .Where(p => p.UserId == currentUserId && p.EventId != null)
+                .Select(p => p.EventId).FirstOrDefaultAsync();
+
+            //user tikets gathe nathm
+            if (eventId == null)
             {
-                Id=user.Id,
-                Email = user.Email,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                NIC = user.NIC,
-                PhoneNumber = user.PhoneNumber,
+                return Ok(new
+                {
+                    User = new UserDto
+                    {
+                        Id = user.Id,
+                        Email = user.Email,
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        NIC = user.NIC,
+                        PhoneNumber = user.PhoneNumber
+                    },
+                    Events = new List<EventDto>(), 
+                    Message = "No tickets purchased yet."
+                });
+            }
+
+            //user tiket gathnam
+            var events = await _context.Events
+                .Include(e => e.category)
+                .Where(e => e.Id == eventId)
+                .ToListAsync();
+
+            var eventDtos = events.Select(eventEntity => new EventDto
+            {
+
+                EventId = eventEntity.Id,
+                EventName = eventEntity.EventName,
+                EventDate = eventEntity.StartDate.ToString("yyyy-MM-dd"),
+                EventTime = eventEntity.StartDate.ToShortTimeString(),
+                EventLocation = eventEntity.Location,
+                EventTicketPrice = eventEntity.tickets?.FirstOrDefault()?.Price.ToString("c") ?? "no tickets",
+                EventDescription = eventEntity.Description,
+                EventCategory=eventEntity.category.Name,
+                EventImage = eventEntity.Image != null
+                            ? $"{Request.Scheme}://{Request.Host}/Uploads/{eventEntity.Image}"
+                            : null,
+
+            }).ToList();
+
+            return Ok(new
+            {
+                User = new UserDto
+                {
+                    Id = user.Id,
+                    Email = user.Email,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    NIC = user.NIC,
+                    PhoneNumber = user.PhoneNumber
+                },
+                Events = eventDtos
             });
         }
 
