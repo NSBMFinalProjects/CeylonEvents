@@ -5,6 +5,7 @@ namespace frontend.Models
 {
     public class User
     {
+        public Guid Id { get; set; }
         [Required(ErrorMessage = "First name is required!")]
         [StringLength(50)]
         public string FirstName { get; set; } = string.Empty;
@@ -14,7 +15,7 @@ namespace frontend.Models
         public string LastName { get; set; } = string.Empty;  
 
         [Required(ErrorMessage = "Enter a valid NIC number")]
-        [StringLength(10)] 
+        [StringLength(12)] 
         public string Nic { get; set; } = string.Empty; 
         
         [Required(ErrorMessage = "Enter a valid email address")]

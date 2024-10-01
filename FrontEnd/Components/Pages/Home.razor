@@ -84,9 +84,9 @@
             @foreach (var currentEvent in CurrentEvents)
             {
                 <div class="col">
-                    <EventCard EventName="@currentEvent.EventName" Date="@currentEvent.EventDate"
-                        Time="@currentEvent.EventTime" Location="@currentEvent.EventLocation"
-                        CardImgUrl="@currentEvent.EventCardImageUrl" />
+                    <EventCard EventName="@currentEvent.EventName" Date="@currentEvent.EventDate.ToString("dddd, dd MMMM yyyy")"
+                        Time="@currentEvent.EventDate.ToString("hh:mm tt")" Location="@currentEvent.EventLocation"
+                        CardImgUrl="@currentEvent.EventImgUrl" />
                 </div>
             }
 
@@ -152,9 +152,9 @@
                     {
                         EventFounded = true;
                         <div class="col">
-                            <EventCard EventName="@currentEvent.EventName" Date="@currentEvent.EventDate"
-                                Time="@currentEvent.EventTime" Location="@currentEvent.EventLocation"
-                                CardImgUrl="@currentEvent.EventCardImageUrl" />
+                            <EventCard EventName="@currentEvent.EventName" Date="@currentEvent.EventDate.ToString("dddd, dd MMMM yyyy")"
+                                Time="@currentEvent.EventDate.ToString("hh:mm tt")" Location="@currentEvent.EventLocation"
+                                CardImgUrl="@currentEvent.EventImgUrl" />
                         </div>
                     }
                 }
@@ -178,7 +178,7 @@
 <div style="width: 100%; height: 5px; background-color: #a91215"></div>
 
 <section class="py-5" id="contact">
-        <ContactSection />
+    <ContactSection />
 </section>
 
 <div style="width: 100%; height: 5px; background-color: #a91215"></div>
@@ -191,7 +191,7 @@
 </section>
 <div style="width: 100%; height: 5px; background-color: #a91215"></div>
 <section class="py-5" id="about">
-        <AboutSection/>
+    <AboutSection />
 </section>
 
 @code {
@@ -199,39 +199,18 @@
     private bool EventFounded;
     private string CategoryTittle = "Special";
 
-    private Event[] CurrentEvents =
+    private EventResponce[] CurrentEvents =
     [
     new(){
-EventName = "Rope Jumping",
-EventDate = "14, September 2024",
-EventDescription = "Come, have fun, and make unforgettable memories with your family, friends, and loved ones!",
-EventId = 1,
-EventLocation="Lakshapana Waterfalls",
-EventTicketPrice="15,000 LKR",
-EventTime = "9.00 AM onwards",
-EventCategory="special",
-EventCardImageUrl="Assets/flyer2.png"
-},
-new(){
-EventName = "Saturday Night",
-EventDate = "20, September 2024",
-EventDescription = "Come, have fun, and make unforgettable memories with your family, friends, and loved ones!",
-EventId = 2,
-EventLocation="Cinomaon Lakeside Colombo",
-EventTicketPrice="8,000 LKR",
-EventTime = "7.00 PM onwards",
-EventCategory="music",
-EventCardImageUrl="Assets/flyer1.jpg"
-},new(){
-EventName = "Saturday Night",
-EventDate = "20, September 2024",
-EventDescription = "Come, have fun, and make unforgettable memories with your family, friends, and loved ones!",
-EventId = 2,
-EventLocation="Cinomaon Lakeside Colombo",
-EventTicketPrice="8,000 LKR",
-EventTime = "7.00 PM onwards",
-EventCategory="music",
-EventCardImageUrl="Assets/flyer1.jpg"
+EventName = "TestEvent",
+EventDate = new DateTime(2024, 10, 01, 10, 30, 0),
+EventDescription = "Test Dscription",
+EventLocation = "Test location",
+EventCategory = "special",
+EventTicketPrice =
+12000,EventId = 1,
+IsVerifiedEvent = true,
+EventImgUrl = "Assets/flyer1.jpg"
 }
     ];
     private void HandleCardClick()

@@ -45,3 +45,11 @@ GET {{EventHandler_HostAddress}}/api/user
 GET {{EventHandler_HostAddress}}/api/event/0
 
 ###
+
+POST http://localhost:5163/api/event
+
+###
+
+POST {{EventHandler_HostAddress}}/api/organiser/createEvent
+
+###

@@ -1,12 +1,14 @@
 ﻿@page "/admprofile"
 @using frontend.Components.index
+@inject IToastService toastService
+@rendermode InteractiveServer
 
 <PageTitle>Admin Profile</PageTitle>
 
 <div class="container mt-5">
     <div class="d-flex" style="justify-content: space-between;">
         <p class="fw-bold" style="font-size: 32px; color: #a91215;">Admin Profile</p>
-        <a class="btn fw-bold loginBtn"
+        <a class="btn fw-bold loginBtn" href="/logout" @onclick="@(()=>toastService.ShowInfo("Logged out successfully!"))"
             style="width: 144px; height: 40px; position: relative; z-index: 2; margin-bottom: 10px; background-color: #a91215; color: white;">Logout</a>
     </div>
     <p class="fw-bold" style="font-size: 24px; color: #a91215;">Profile details</p>

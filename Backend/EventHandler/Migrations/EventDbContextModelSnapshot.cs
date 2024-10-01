@@ -44,6 +44,12 @@ namespace EventHandler.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("EventType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -140,6 +146,48 @@ namespace EventHandler.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "organiser-id-001",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "3b7a1db9-6154-41d7-af39-f37746d81bcb",
+                            Email = "organiser@example.com",
+                            EmailConfirmed = true,
+                            FirstName = "John",
+                            LastName = "Doe",
+                            LockoutEnabled = false,
+                            NIC = "123456789321456",
+                            NormalizedEmail = "ORGANISER@EXAMPLE.COM",
+                            NormalizedUserName = "ORGANISER",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEOo6TWpzx7ODohqRUtt+HGHzLnHMucq8AUyb9uKUDFZHOHDTNX0oN8QrB9wvIJEpA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "1025ffc1-42fa-415a-bb7a-ffb35c76fb88",
+                            TwoFactorEnabled = false,
+                            UserName = "organiser",
+                            reqId = 0
+                        },
+                        new
+                        {
+                            Id = "Admin-id-001",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "8b633325-249c-4ab1-90d0-e543eb4574d8",
+                            Email = "admin@example.com",
+                            EmailConfirmed = true,
+                            FirstName = "kavindu",
+                            LastName = "dilshan",
+                            LockoutEnabled = false,
+                            NIC = "2001065080956",
+                            NormalizedEmail = "ADMIN@EXAMPLE.COM",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAIAAYagAAAAECU5hnfRcv7yYKt2B1SHpbu6wvNujNDUqptUSz0QKDVTNQ2xlvONtZxVqsoE63/m9Q==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "bbbea975-9266-4708-a3a7-839b2f105ff1",
+                            TwoFactorEnabled = false,
+                            UserName = "admin",
+                            reqId = 0
+                        });
                 });
 
             modelBuilder.Entity("EventHandler.Models.Entities.Category", b =>
@@ -339,6 +387,18 @@ namespace EventHandler.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "organiser-id-001",
+                            RoleId = "3"
+                        },
+                        new
+                        {
+                            UserId = "Admin-id-001",
+                            RoleId = "1"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

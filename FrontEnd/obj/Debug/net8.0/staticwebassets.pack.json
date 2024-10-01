@@ -85,6 +85,22 @@
       "PackagePath": "staticwebassets\\Assets\\registerGroup.png"
     },
     {
+      "Id": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Assets\\verfied.jpg",
+      "PackagePath": "staticwebassets\\Assets\\verfied.jpg"
+    },
+    {
+      "Id": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Uploads\\EventCards\\aulgxye2.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\EventCards\\aulgxye2.jpg"
+    },
+    {
+      "Id": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Uploads\\EventCards\\cd355d2y.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\EventCards\\cd355d2y.jpg"
+    },
+    {
+      "Id": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\Uploads\\EventCards\\infvjs05.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\EventCards\\infvjs05.jpg"
+    },
+    {
       "Id": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\wwwroot\\app.css",
       "PackagePath": "staticwebassets\\app.css"
     },

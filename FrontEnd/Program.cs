@@ -21,6 +21,8 @@ builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>
 
 var eventHandlerAPI = builder.Configuration["EventHandlerApi"] ?? throw new Exception("Backend URL not found");
 builder.Services.AddHttpClient<UserClient>(client => client.BaseAddress = new Uri(eventHandlerAPI));
+builder.Services.AddHttpClient<EventClient>(client => client.BaseAddress = new Uri(eventHandlerAPI));
+builder.Services.AddHttpClient<OrganizerClient>(client => client.BaseAddress = new Uri(eventHandlerAPI));
 
 
 var app = builder.Build();
