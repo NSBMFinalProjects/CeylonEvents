@@ -154,7 +154,7 @@ namespace EventHandler.Controllers
                 
             };
 
-            // Save changes to the database
+           
             _context.Tickets.Update(ticket);
             _context.Purchases.Add(purchase);
             await _context.SaveChangesAsync();
