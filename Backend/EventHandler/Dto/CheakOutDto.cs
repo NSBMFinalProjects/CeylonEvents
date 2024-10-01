@@ -1,15 +1,14 @@
 ﻿namespace EventHandler.Dto
 {
-    public class CheakOutDto
+    public class CheckoutDto
     {
+        public int TiketId { get; set; }
+        public int EventId { get; set; }
+        public string userID { get; set; }
         public string EventName { get; set; }
-
-        public string TicketName { get; set; }
-
-        public string TicketPice { get; set; }
-
-        public string UserName { get; set; }
-
-        public long FinalPrice { get; set; }
+        public string description { get; set; }
+        public long TicketPrice { get; set; } 
+        public int Quantity { get; set; } 
     }
+
 }

@@ -23,7 +23,14 @@ public class Ticket
 
     public string Status { get; set; } = "Available";
 
+    public List<Purchase> Purchases { get; set; }
+
     public Event Event { get; set; }
 
     public AppUser? AppUser { get; set; }
+
+    public Ticket()
+    {
+        Purchases = new List<Purchase>(); // Initialize the collection to avoid null reference issues
+    }
 }

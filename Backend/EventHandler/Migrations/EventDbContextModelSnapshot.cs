@@ -231,6 +231,41 @@ namespace EventHandler.Migrations
                         });
                 });
 
+            modelBuilder.Entity("EventHandler.Models.Entities.Purchase", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("EventId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("PurchaseDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TicketId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventId");
+
+                    b.HasIndex("TicketId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Purchases");
+                });
+
             modelBuilder.Entity("EventHandler.Models.Entities.Requests", b =>
                 {
                     b.Property<int>("ReqId")
@@ -481,6 +516,32 @@ namespace EventHandler.Migrations
                     b.Navigation("category");
                 });
 
+            modelBuilder.Entity("EventHandler.Models.Entities.Purchase", b =>
+                {
+                    b.HasOne("Event", "Event")
+                        .WithMany("purchases")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Ticket", "Ticket")
+                        .WithMany("Purchases")
+                        .HasForeignKey("TicketId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("EventHandler.Models.Entities.AppUser", "User")
+                        .WithMany("Purchases")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Event");
+
+                    b.Navigation("Ticket");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("EventHandler.Models.Entities.Requests", b =>
                 {
                     b.HasOne("EventHandler.Models.Entities.AppUser", "AppUser")
@@ -563,12 +624,16 @@ namespace EventHandler.Migrations
 
             modelBuilder.Entity("Event", b =>
                 {
+                    b.Navigation("purchases");
+
                     b.Navigation("tickets");
                 });
 
             modelBuilder.Entity("EventHandler.Models.Entities.AppUser", b =>
                 {
                     b.Navigation("Events");
+
+                    b.Navigation("Purchases");
 
                     b.Navigation("Requests")
                         .IsRequired();
@@ -579,6 +644,11 @@ namespace EventHandler.Migrations
             modelBuilder.Entity("EventHandler.Models.Entities.Category", b =>
                 {
                     b.Navigation("Events");
+                });
+
+            modelBuilder.Entity("Ticket", b =>
+                {
+                    b.Navigation("Purchases");
                 });
 #pragma warning restore 612, 618
         }

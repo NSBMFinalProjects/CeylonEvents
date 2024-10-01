@@ -18,8 +18,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 var JWTSetting = builder.Configuration.GetSection("JWTSetting");
 
-
-
 builder.Services.AddDbContext<EventDbContext>(options => 
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"));
@@ -92,6 +90,15 @@ builder.Services.AddSwaggerGen(c => {
 
 });
 
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Set session timeout
+    options.Cookie.HttpOnly = true; // Prevent JavaScript access to the cookie
+    options.Cookie.IsEssential = true; // Make the session cookie essential
+});
+
+builder.Services.AddDistributedMemoryCache();
+
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
@@ -120,6 +127,8 @@ app.UseCors(options =>
 });
 
 app.UseHttpsRedirection();
+
+app.UseSession();
 
 app.UseAuthentication();
 

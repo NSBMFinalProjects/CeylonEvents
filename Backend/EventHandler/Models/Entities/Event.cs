@@ -33,7 +33,7 @@ public class Event
 
     public AppUser Organizer { get; set; }
 
-
+    public List<Purchase> purchases { get; set; }
     public List<Ticket> tickets { get; set; }
 
 }
