@@ -1,4 +1,14 @@
-﻿@page "/addevent"
+﻿@page "/addevent/{orgid}"
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@using frontend.Clients
+@using frontend.Models
+@inject IConfiguration config
+@inject NavigationManager NavigationManager
+@inject HttpClient HttpClient
+@inject OrganizerClient OrganizerClient
+@inject IToastService toastService
+
+@rendermode InteractiveServer
 
 <PageTitle>Add Event</PageTitle>
 
@@ -20,60 +30,157 @@
     <img src="Assets/addEventGroup.png" width="300px" class="d-flex mx-auto mb-3" alt="">
     <p class="mb-3 text-center fw-semibold" style="margin-top: -15px; letter-spacing: 8px;">Publish your event</p>
     <p class="mb-3 text-center">Submit your event content to our admins and confirm your event</p>
-    <form class="mt-3" style="width: 100%;">
+    <EditForm Model="@newEvent" FormName="editGame" OnValidSubmit="UploadImage">
+        <DataAnnotationsValidator />
         <div class="mb-3">
             <label for="eventname" class="form-label fw-semibold">Event Name</label>
-            <input type="text" class="form-control" style="height: 42px !important;" id="eventname"
-                placeholder="Enter event name">
+            <InputText @bind-Value="newEvent.EventName" type="text" class="form-control"
+                style="height: 42px !important;" id="eventname" placeholder="Enter event name" />
+            <ValidationMessage For="() => newEvent.EventName" />
         </div>
-        <div class="mb-3 d-flex" style="gap: 8px;">
-            <div>
-                <label for="date" class="form-label fw-semibold">Date</label>
-                <input type="text" class="form-control" style="height: 42px !important;" id="date"
-                    placeholder="mm/dd/yyyy">
-            </div>
-            <div>
-                <label for="time" class="form-label fw-semibold">Start Time</label>
-                <input type="text" class="form-control" style="height: 42px !important;" id="time" placeholder="hh.mm">
-            </div>
+        <div class="mb-3">
+            <label for="date" class="form-label fw-semibold">Date and Time</label>
+            <InputDate @bind-Value="newEvent.EndDate" Type="InputDateType.DateTimeLocal" class="form-control"
+                style="height: 42px !important;" id="date" />
         </div>
         <div class="mb-3 d-flex" style="gap: 8px;">
             <div>
                 <label for="tcount" class="form-label fw-semibold">Tickets count</label>
-                <input type="text" class="form-control" style="height: 42px !important;" id="tcount"
-                    placeholder="Tickets count">
+                <InputNumber @bind-Value="newTicket.Quantity" type="text" class="form-control"
+                    style="height: 42px !important;" id="tcount" placeholder="Tickets count" />
+                <ValidationMessage For="() => newTicket.Quantity" />
             </div>
             <div>
                 <label for="tprice" class="form-label fw-semibold">Ticket price</label>
-                <input type="text" class="form-control" style="height: 42px !important;" id="tprice"
-                    placeholder="Ticket price">
+                <div class="input-group">
+                    <span class="input-group-text">LKR</span>
+                    <InputNumber @bind-Value="newTicket.Price" type="text" class="form-control"
+                        style="height: 42px !important;" id="tprice" placeholder="Ticket price" />
+                    <ValidationMessage For="() => newTicket.Price" />
+                </div>
             </div>
         </div>
         <div class="mb-3">
             <label for="pno" class="form-label fw-semibold">Description</label>
-            <input type="text" class="form-control" style="height: 42px !important;" id="pno"
-                placeholder="Enter a description about event">
+            <InputText @bind-Value="newEvent.Description" type="text" class="form-control"
+                style="height: 42px !important;" id="description" placeholder="Enter a description about event" />
+            <ValidationMessage For="() => newEvent.Description" />
         </div>
         <div class="mb-3">
-            <label for="nic" class="form-label fw-semibold">Event cover image</label>
-            <input multiple="" type="file" _bl_2="">
+            <label for="pno" class="form-label fw-semibold">Location</label>
+            <InputText @bind-Value="newEvent.Location" type="text" class="form-control" style="height: 42px !important;"
+                id="location" placeholder="Enter the location" />
+            <ValidationMessage For="() => newEvent.Location" />
         </div>
-        <p class="fw-semibold text-center mt-5" style="font-size: 20px;">NOTE</p>
-        <p class="fw-semibold text-center text-danger" style="margin-top: -10px;">Ensure your event details are correct. You will not able to edit your content after approval.</p>
 
+        <label for="pno" class="form-label fw-semibold">Category</label>
+        <div class="input-group">
+            <InputSelect @bind-Value="newEvent.CategoryId" type="text" class="form-select"
+                style="height: 42px !important;" id="category">
+                <option value="1">Conference</option>
+                <option value="2">Workshop</option>
+                <option value="3">Concert</option>
+            </InputSelect>
+            <label class="input-group-text" for="inputGroupSelect02">Event category</label>
+        </div>
+        <ValidationMessage For="() => newEvent.CategoryId" />
+        <div class="mt-3 mb-3">
+            <label for="nic" class="form-label fw-semibold">Event cover image</label>
+            <InputFile OnChange="@HandleFileSelection" accept="image/*" class="form-control" />
+        </div>
+
+        <p class="fw-semibold text-center mt-5" style="font-size: 20px;">NOTE</p>
+        <p class="fw-semibold text-center text-danger" style="margin-top: -10px;">Ensure your event details are correct.
+            You will not able to edit your content after approval.</p>
 
         <div class="mt-5 d-flex" style="gap: 5px;">
-            <a class="btn fw-bold loginBtn"
-                style="width: 100%; margin-bottom: 10px; background-color: #a91215; color: white;">Submit event</a>
+            <button class="btn fw-bold loginBtn" type="submit" disabled="@(selectedFile == null)"
+                style="width: 100%; margin-bottom: 10px; background-color: #a91215; color: white;">Submit event</button>
             <img src="Assets/Logo_half_transparent.png" style="height: 38px; margin-bottom: 10px;" alt="" />
         </div>
         <div class="mx-auto" style="width: fit-content;">
-            <a class="fw-semibold" href="#" style="color: #a91215; cursor: pointer;">Need help</a>
+            <a class="fw-semibold" style="color: #a91215; cursor: pointer;">Need
+                help</a>
         </div>
-
-    </form>
+    </EditForm>
 </div>
 
+
+
 @code {
+    [Parameter]
+    public string? OrgId { get; set; }
+    private EventRequest newEvent { get; set; } = new();
+    private Ticket newTicket { get; set; } = new();
+
+
+    private async Task UploadImage()
+    {
+        if (selectedFile != null)
+        {
+            newEvent.StartDate = DateTime.Now;
+            newEvent.Tickets.Add(newTicket);
+            await UploadImageAsync(selectedFile, newEvent);
+            selectedFile = null;
+        }
+    }
+
+    protected override void OnParametersSet()
+    {
+        newEvent = new()
+            {
+                OrganizerId = OrgId!,
+                EndDate = DateTime.Now.AddDays(1),
+            };
+        newTicket.Quantity = 100;
+        newTicket.Price = 1000;
+        newTicket.TicketName = "Normal";
+
+
+    }
+    public async Task UploadImageAsync(IBrowserFile file, EventRequest eventDetails)
+    {
+        if (file == null)
+            return;
+
+        using var stream = file.OpenReadStream(maxAllowedSize: 1024 * 1024 * 10);
+        using var memoryStream = new MemoryStream();
+        await stream.CopyToAsync(memoryStream);
+        memoryStream.Position = 0;
+
+        using var content = new MultipartFormDataContent();
+
+        content.Add(new StringContent(eventDetails.OrganizerId.ToString()), "OrganizerId");
+        content.Add(new StringContent(eventDetails.EventName!), "EventName");
+        content.Add(new StringContent(eventDetails.Description!), "Description");
+        content.Add(new StringContent(eventDetails.StartDate.ToString("O")), "StartDate");
+        content.Add(new StringContent(eventDetails.EndDate.ToString("O")), "EndDate");
+        content.Add(new StringContent(eventDetails.Location!), "Location");
+        content.Add(new StringContent(eventDetails.CategoryId.ToString()), "CategoryId");
+        content.Add(new StreamContent(memoryStream), "imageFile", file.Name);
+        content.Add(new StringContent(System.Text.Json.JsonSerializer.Serialize(eventDetails.Tickets)), "Tickets");
+
+        var response = await OrganizerClient.AddEvent(content);
+
+        if (response.IsSuccessStatusCode)
+        {
+            Console.WriteLine("Event details and file uploaded successfully");
+            toastService.ShowInfo("Event request send successfully! We will let you know when the event is approved.");
+            NavigationManager.NavigateTo("/orgprofile");
+        }
+        else
+        {
+            toastService.ShowInfo("Somthing went wrong! Please try again.");
+            NavigationManager.NavigateTo("/orgprofile");
+            Console.WriteLine($"Upload failed: {response.StatusCode}");
+        }
+    }
+
+    private IBrowserFile? selectedFile;
+
+    private void HandleFileSelection(InputFileChangeEventArgs e)
+    {
+        selectedFile = e.File;
+    }
 
 }
