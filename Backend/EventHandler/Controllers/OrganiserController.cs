@@ -152,6 +152,8 @@ namespace EventHandler.Controllers
                 });
             }
 
+
+
             return Ok(new UserDto
             {
                 Id = user.Id,
@@ -162,6 +164,104 @@ namespace EventHandler.Controllers
                 PhoneNumber = user.PhoneNumber,
             });
         }
+
+        [HttpGet("Organiser-Events")]
+        public async Task<IActionResult> GetUserEvents()
+        {
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var events = await _context.Events
+                .Where(e => e.OrganizerId == currentUserId)
+                .Include(e=>e.tickets)
+                .Include(e => e.category) 
+                .ToListAsync();
+
+            var eventDtos = events.Select(eventEntity => new EventDto
+            {
+                EventId = eventEntity.Id,
+                EventName = eventEntity.EventName,
+                EventDate = eventEntity.StartDate.ToString("yyyy-MM-dd"),
+                EventTime = eventEntity.StartDate.ToShortTimeString(),
+                EventLocation = eventEntity.Location,
+                EventTicketPrice = eventEntity.tickets?.FirstOrDefault()?.Price.ToString("c") ?? "no tickets",
+                EventDescription = eventEntity.Description,
+                EventCategory = eventEntity.category.Name,
+                EventImage = eventEntity.Image
+            }).ToList();
+
+            return Ok(eventDtos);
+        }
+
+
+        [HttpGet("Profit/{eventId}")]
+        public async Task<IActionResult> GetProfitDetails(int eventId)
+        {
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+           
+            var eventEntity = await _context.Events
+                .Where(e => e.OrganizerId == currentUserId && e.Id == eventId)
+                .Include(e => e.tickets)
+                .Include(e => e.category)
+                .FirstOrDefaultAsync();
+
+            
+            if (eventEntity == null)
+            {
+                return NotFound($"Event with ID {eventId} not found or you do not have permission to view it.");
+            }
+
+            var imageUrl = $"{Request.Scheme}://{Request.Host}/Uploads/{eventEntity.Image}";
+            var eventDto = new EventDto
+            {
+
+                EventId = eventEntity.Id,
+                EventName = eventEntity.EventName,
+                EventDate = eventEntity.StartDate.ToString("yyyy-MM-dd"),
+                EventTime = eventEntity.StartDate.ToShortTimeString(),
+                EventLocation = eventEntity.Location,
+                EventTicketPrice = eventEntity.tickets?.FirstOrDefault()?.Price.ToString("c") ?? "no tickets",
+                EventDescription = eventEntity.Description,
+                EventCategory = eventEntity.category.Name,
+                EventImage = imageUrl,
+            };
+
+            
+            var purchases = await _context.Purchases
+                .Where(p => p.EventId == eventEntity.Id)
+                .ToListAsync();
+
+            
+            var totalQuantitySold = purchases.Sum(p => p.Quantity);
+
+            
+            var ticketPrice = eventEntity.tickets.FirstOrDefault()?.Price ?? 0;
+
+            
+            var totalTicketQuantity = eventEntity.tickets.FirstOrDefault()?.Quantity ?? 0;
+
+            
+            var totalRevenue = totalQuantitySold * ticketPrice;
+
+            
+            var remainingTickets = totalTicketQuantity - totalQuantitySold;
+
+            var profitDetail = new ProfitDetailDto
+            {
+                TotalTikets = totalQuantitySold,
+                profit = totalRevenue,
+                ReminTikets = remainingTickets
+            };
+
+            return Ok(new
+            {
+                EventDetails = eventDto,
+                ProfitDetails = profitDetail
+            });
+        }
+
+
+
     }
 
 }
