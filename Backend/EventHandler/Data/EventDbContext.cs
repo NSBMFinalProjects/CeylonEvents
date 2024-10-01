@@ -21,6 +21,8 @@ namespace EventHandler.Data
 
         public DbSet<Requests> requests { get; set; }
 
+        public DbSet<Purchase> Purchases { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -74,6 +76,24 @@ namespace EventHandler.Data
                 .HasMany(e => e.tickets)
                 .WithOne(t => t.Event)
                 .HasForeignKey(t => t.EventId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Purchase>()
+               .HasOne(p => p.Ticket)
+               .WithMany(t => t.Purchases) // Assuming a Ticket can have many Purchases
+               .HasForeignKey(p => p.TicketId)
+               .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Purchase>()
+                .HasOne(p => p.User) // Assuming AppUser has a navigation property for Purchases
+                .WithMany(u => u.Purchases) // Assuming User can have many Purchases
+                .HasForeignKey(p => p.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Purchase>()
+                .HasOne(p => p.Event)
+                .WithMany(u => u.purchases)
+                .HasForeignKey(p => p.EventId)
                 .OnDelete(DeleteBehavior.Restrict);
 
 
