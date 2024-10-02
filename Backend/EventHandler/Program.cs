@@ -1,9 +1,12 @@
 using System;
+using System.Net.Mail;
 using System.Text;
 using EventHandler.Data;
 using EventHandler.Helper;
 using EventHandler.Models.Entities;
+using EventHandler.Services.EmailService;
 using EventHandler.Services.EventService;
+using MailKit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -25,7 +28,11 @@ builder.Services.AddDbContext<EventDbContext>(options =>
 
 builder.Services.AddScoped<IEventRepository, EventRepository>();
 builder.Services.AddScoped<IEventService, Eventservice>();
+
 builder.Services.AddTransient<UploadHandler>();
+
+builder.Services.AddSingleton<SmtpClient>();
+builder.Services.AddSingleton<IEmailService, EmailService>();
 
 StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
 
@@ -105,6 +112,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
 
 var app = builder.Build();
+
+app.Lifetime.ApplicationStopping.Register(() =>
+{
+    var smtpClient = app.Services.GetRequiredService<MailKit.Net.Smtp.SmtpClient>();
+    smtpClient.Disconnect(true);
+    smtpClient.Dispose();
+});
+
 
 app.UseStaticFiles(new StaticFileOptions
 {
