@@ -144,27 +144,29 @@ namespace Api.Controllers
             //user tiket gathnam
             var events = await _context.Events
                 .Include(e => e.category)
+                .Include(e=>e.purchases)
                 .Where(e => e.Id == eventId)
                 .ToListAsync();
 
-            var eventDtos = events.Select(eventEntity => new EventDto
-            {
+                var eventDtos = events.Select(eventEntity => new EventPurceseDto
+                {
 
-                EventId = eventEntity.Id,
-                EventName = eventEntity.EventName,
-                EventDate = eventEntity.StartDate.ToString("yyyy-MM-dd"),
-                EventTime = eventEntity.StartDate.ToShortTimeString(),
-                EventLocation = eventEntity.Location,
-                EventTicketPrice = eventEntity.tickets?.FirstOrDefault()?.Price.ToString("c") ?? "no tickets",
-                EventDescription = eventEntity.Description,
-                EventCategory=eventEntity.category.Name,
-                EventImage = eventEntity.Image != null
-                            ? $"{Request.Scheme}://{Request.Host}/Uploads/{eventEntity.Image}"
-                            : null,
+                    EventId = eventEntity.Id,
+                    EventName = eventEntity.EventName,
+                    EventDate = eventEntity.StartDate.ToString("yyyy-MM-dd"),
+                    EventTime = eventEntity.StartDate.ToShortTimeString(),
+                    EventLocation = eventEntity.Location,
+                    EventTicketPrice = eventEntity.tickets?.FirstOrDefault()?.Price.ToString("c") ?? "no tickets",
+                    EventDescription = eventEntity.Description,
+                    PurchesedTikets = eventEntity.purchases.Sum(p => p.Quantity),
+                    EventCategory = eventEntity.category.Name,
+                    EventImage = eventEntity.Image != null
+                                ? $"{Request.Scheme}://{Request.Host}/Uploads/{eventEntity.Image}"
+                                : null,
 
-            }).ToList();
+                }).ToList();
 
-            return Ok(new
+                return Ok(new
             {
                 User = new UserDto
                 {
