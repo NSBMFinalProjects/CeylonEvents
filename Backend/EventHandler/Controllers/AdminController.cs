@@ -1,10 +1,14 @@
 ﻿using EventHandler.Data;
 using EventHandler.Dto;
+using EventHandler.Models.Entities;
 using EventHandler.Services.EventService;
+using EventHandler.Services.RoleService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Asn1.Cmp;
 
 namespace EventHandler.Controllers
 {
@@ -16,11 +20,15 @@ namespace EventHandler.Controllers
     {
         private readonly EventDbContext _context;
         private readonly IEventService _eventService;
+        private readonly RoleService _roleService;
+        private readonly UserManager<AppUser> _userManager;
 
-        public AdminController(EventDbContext eventDbContext,IEventService eventService)
+        public AdminController(EventDbContext eventDbContext,IEventService eventService, RoleService roleService, UserManager<AppUser> userManager)
         {
             _context = eventDbContext;
             _eventService = eventService;
+            _roleService = roleService;
+            _userManager = userManager;
         }
 
 
@@ -225,6 +233,48 @@ namespace EventHandler.Controllers
 
             return Ok(new { message = "Event has been Rejected successfully." });
         }
+
+        [HttpGet("requests")]
+        public async Task<IActionResult> ViewRequests()
+        {
+            var requests = await _context.requests
+                            .Include(r => r.AppUser)
+                            .ToListAsync();
+            var requestsOfUsers = requests.Select(request=> new RequestDto
+            {
+                Id=request.ReqId,
+                ReqDetails=request.reqDetails,
+                UserId=request.userId,
+                UserName =request.AppUser?.FirstName ?? "no user name",
+
+            });
+            return Ok(requestsOfUsers);
+        }
+
+        [HttpPost("AssignOrganizer")]
+        public async Task<IActionResult> AssignOrganizerRole(int requestId)
+        {
+            var request = await _context.requests.Include(r => r.AppUser).FirstOrDefaultAsync(r => r.ReqId == requestId);
+            if (request == null)
+            {
+                return NotFound("Request not found.");
+            }
+
+            var user = request.AppUser;
+
+            var result = await _roleService.AssignOrganizerRole(user);
+            if (result.Succeeded)
+            {
+                _context.requests.Remove(request);  // Remove the request after assigning the role
+                await _context.SaveChangesAsync();
+
+                return Ok("Organizer role assigned successfully.");
+            }
+
+            return BadRequest("Error assigning organizer role.");
+        }
+
+
 
 
 
