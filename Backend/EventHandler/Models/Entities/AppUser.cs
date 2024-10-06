@@ -21,7 +21,7 @@ namespace EventHandler.Models.Entities
 
         public AppUser()
         {
-            Purchases = new List<Purchase>(); // Initialize the collection to avoid null reference issues
+            Purchases = new List<Purchase>(); 
         }
     }
 }
