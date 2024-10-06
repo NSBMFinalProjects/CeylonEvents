@@ -6,6 +6,7 @@ using EventHandler.Helper;
 using EventHandler.Models.Entities;
 using EventHandler.Services.EmailService;
 using EventHandler.Services.EventService;
+using EventHandler.Services.RoleService;
 using MailKit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -30,6 +31,7 @@ builder.Services.AddScoped<IEventRepository, EventRepository>();
 builder.Services.AddScoped<IEventService, Eventservice>();
 
 builder.Services.AddTransient<UploadHandler>();
+builder.Services.AddScoped<RoleService>();
 
 builder.Services.AddSingleton<SmtpClient>();
 builder.Services.AddSingleton<IEmailService, EmailService>();
