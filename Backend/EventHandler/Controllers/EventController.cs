@@ -55,7 +55,7 @@ namespace EventHandler.Controllers
                 EventDate = eventEntity.StartDate.ToString("yyyy-MM-dd"),
                 EventTime = eventEntity.StartDate.ToShortTimeString(),
                 EventLocation = eventEntity.Location,
-                EventTicketPrice = eventEntity.tickets?.FirstOrDefault()?.Price.ToString("c") ?? "no tickets",
+                EventTicketPrice = ((int)eventEntity.tickets?.FirstOrDefault()?.Price),
                 EventDescription = eventEntity.Description,
                 EventCategory = eventEntity.category.Name,
                 EventImage= imageUrl,
@@ -86,7 +86,7 @@ namespace EventHandler.Controllers
                 EventDate = eventEntity.StartDate.ToString("yyyy-MM-dd"),
                 EventTime = eventEntity.StartDate.ToShortTimeString(),
                 EventLocation = eventEntity.Location,
-                EventTicketPrice = eventEntity.tickets?.FirstOrDefault()?.Price.ToString("c") ?? "no tickets",
+                EventTicketPrice = ((int)eventEntity.tickets?.FirstOrDefault()?.Price),
                 EventDescription = eventEntity.Description,
                 EventCategory = eventEntity.category.Name,
                 EventImage = eventEntity.Image != null
