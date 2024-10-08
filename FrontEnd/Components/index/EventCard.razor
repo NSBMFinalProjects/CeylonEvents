@@ -56,7 +56,9 @@
                         style="width: 100%; height: 40px; background-color: #a91215; color: white;">
                         5 Tickets
                     </a>
-                }else{
+                }
+                else
+                {
                     <a class="btn fw-semibold bookNowBtn"
                         style="width: 100%; height: 40px; background-color: #a91215; color: white;">
                         Book Now
@@ -83,16 +85,20 @@
     public required string CardImgUrl { get; set; }
     [Parameter]
     public bool IsEventPreview { get; set; } = false;
+    [Parameter]
+    public int EventId { get; set; }
 
     private void CreateCardTravelUrl()
     {
         if (!IsEventPreview)
         {
-            NavigationManager.NavigateTo("/event");
+            NavigationManager.NavigateTo($"/event/{EventId}");
+            @* NavigationManager.NavigateTo("/event"); *@
+            @* Console.WriteLine($"Event ID : {EventId}"); *@
         }
         else
         {
-            NavigationManager.NavigateTo("/eventprw");
+            NavigationManager.NavigateTo($"/eventprw/{EventId}");
         }
     }
 

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Payment</title>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <h1>Test Payment Integration</h1>
+    <button id="checkout-button">Checkout</button>
+
+    <script>
+        // Replace with your test public key from the response
+        var stripe = Stripe('pk_test_51PxKkWRpRVD6tkIxlJNMaEI67BiWrBrjLjXwS2QoJS2IFSzd4xjtB17FlGol7I71p5q6q2CFrUBAhyhc7jB60R8600P0LkYrxL');
+
+        var checkoutButton = document.getElementById('checkout-button');
+
+        checkoutButton.addEventListener('click', function () {
+            // Replace with your session ID from the response
+            stripe.redirectToCheckout({
+                sessionId: 'cs_test_a1hmaPmE9EGXmafojJdSGu5P4GIwVjwJA1szfL1VcdGXdyfXdWDxcYXLfz'
+            }).then(function (result) {
+                if (result.error) {
+                    // Display error.message in your UI.
+                    alert(result.error.message);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

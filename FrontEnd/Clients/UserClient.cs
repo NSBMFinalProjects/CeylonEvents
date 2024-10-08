@@ -48,12 +48,17 @@ namespace frontend.Clients
             return loginResponse ?? throw new InvalidOperationException("Login response is null.");
         }
 
-        public async Task<User> GetUserInfo()
+        public async Task<UserResponce> GetUserInfo()
         {
             await SetAuthorizedHeader();
-            return await httpClient.GetFromJsonAsync<User>("api/user") ?? throw new Exception("Could not find the user");
+            return await httpClient.GetFromJsonAsync<UserResponce>("api/User") ?? throw new Exception("Could not find the user");
+        }
+
+        public async Task<EventResponce> GetEventInfo(int eventId)
+        {
+            await SetAuthorizedHeader();
+            return await httpClient.GetFromJsonAsync<EventResponce>($"api/Event/{eventId}") ?? throw new Exception("Could not find the user");
         }
     }
-
 }
 

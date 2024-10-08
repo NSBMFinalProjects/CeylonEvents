@@ -53,3 +53,7 @@ POST http://localhost:5163/api/event
 POST {{EventHandler_HostAddress}}/api/organiser/createEvent
 
 ###
+
+GET {{EventHandler_HostAddress}}/api/organiser/Organiser-Details
+
+###

@@ -66,38 +66,36 @@
                     </ul>
                 </NotAuthorized>
                 <Authorized>
+                    <ul class="navbar-nav ms-5" style="gap: 16px;">
+                        <li class="nav-item">
+                            <a class="nav-link" style="font-size: 16px; font-weight: bold;"
+                                href="/logout">Logout</a>
+                        </li>
                     @if (Role == "Buyer")
                     {
-                        <ul class="navbar-nav ms-5" style="gap: 16px;">
                             <li class="nav-item loginBtn"
                                 style="background-color: #a91215; border-radius: 5px; box-shadow: 0px 1px 2px 0px #5e5e5e; ">
                                 <a class="nav-link px-5" style="font-size: 16px; color: white; font-weight: bold;"
                                     href="/profile">User Profile</a>
                             </li>
-                        </ul>
                     }
                     else if (Role == "Admin")
                     {
-                        <ul class="navbar-nav ms-5" style="gap: 16px;">
                             <li class="nav-item loginBtn"
                                 style="background-color: #a91215; border-radius: 5px; box-shadow: 0px 1px 2px 0px #5e5e5e; ">
                                 <a class="nav-link px-5" style="font-size: 16px; color: white; font-weight: bold;"
                                     href="/admprofile">Admin Profile</a>
                             </li>
-                        </ul>
-
                     }
                     else if (Role == "Organiser")
                     {
-                        <ul class="navbar-nav ms-5" style="gap: 16px;">
                             <li class="nav-item loginBtn"
                                 style="background-color: #a91215; border-radius: 5px; box-shadow: 0px 1px 2px 0px #5e5e5e; ">
                                 <a class="nav-link px-5" style="font-size: 16px; color: white; font-weight: bold;"
                                     href="/orgprofile">Organizer Profile</a>
                             </li>
-                        </ul>
-
                     }
+                    </ul>
                 </Authorized>
             </AuthorizeView>
 

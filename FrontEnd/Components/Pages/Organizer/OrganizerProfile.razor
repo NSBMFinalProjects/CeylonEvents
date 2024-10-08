@@ -68,7 +68,7 @@
             Event</button>
     </div>
     <div class="row row-cols-1 row-cols-md-2 g-5 justify-content-center" style="margin-top: 75px;">
-        @if (YourEvents.Length != 0)
+        @if (YourEvents is not null)
         {
 
             @foreach (var yourEvent in YourEvents)
@@ -76,8 +76,8 @@
 
                 <div class="col">
                     <OrgEventCard Verified=yourEvent.IsVerifiedEvent EventName="@yourEvent.EventName"
-                        Date="@yourEvent.EventDate.ToString("MM/dd/yyyy")" Time="@yourEvent.EventDate.ToString("hh:mm tt")"
-                        Location="@yourEvent.EventLocation" CardImgUrl="@yourEvent.EventImgUrl" />
+                        Date="@yourEvent.EventDate" Time="@yourEvent.EventTime"
+                        Location="@yourEvent.EventLocation" CardImgUrl="@yourEvent.EventImage" />
                 </div>
             }
         }
@@ -88,37 +88,19 @@
                 No any event published.
             </p>
         }
+        @* <div class="col">
+            <OrgEventCard Verified=false EventName="Kataka" CardImgUrl="Assets/kataka.png" Date="2024-10-08" Location="BMICH Colombo" Time="6.30 PM"/>
+        </div>
+        <div class="col">
+            <OrgEventCard Verified=false EventName="Kuweni" CardImgUrl="Assets/Kuweni.jpeg" Date="2024-11-20" Location="Nelum Pokuna Indoor" Time="7.30 PM"/>  
+        </div> *@
     </div>
 </div>
 
 <img src="Assets/Logo_background_t.png" style="position: absolute; right: 0; top:0; z-index: 0;" width="490" alt="">
 
 @code {
-    private EventResponce[] YourEvents =
-    [
-    new(){
-EventName = "Rope Jumping",
-EventDate = new DateTime(2024, 10, 01, 10, 30, 0),
-EventDescription = "Come, have fun, and make unforgettable memories with your family, friends, and loved ones!",
-EventId = 1,
-EventLocation="Lakshapana Waterfalls",
-EventTicketPrice=15000,
-EventCategory="special",
-EventImgUrl="Assets/flyer2.png",
-IsVerifiedEvent = true
-},
-new(){
-EventName = "Rope Jumping",
-EventDate = new DateTime(2024, 10, 01, 10, 30, 0),
-EventDescription = "Come, have fun, and make unforgettable memories with your family, friends, and loved ones!",
-EventId = 1,
-EventLocation="Lakshapana Waterfalls",
-EventTicketPrice=15000,
-EventCategory="special",
-EventImgUrl="Assets/flyer2.png",
-IsVerifiedEvent = true
-},
-];
+    private EventResponce[]? YourEvents;
     private User? user;
     private bool IsLogged = false;
     private bool IsContentLoaded;

@@ -23,6 +23,7 @@ var eventHandlerAPI = builder.Configuration["EventHandlerApi"] ?? throw new Exce
 builder.Services.AddHttpClient<UserClient>(client => client.BaseAddress = new Uri(eventHandlerAPI));
 builder.Services.AddHttpClient<EventClient>(client => client.BaseAddress = new Uri(eventHandlerAPI));
 builder.Services.AddHttpClient<OrganizerClient>(client => client.BaseAddress = new Uri(eventHandlerAPI));
+builder.Services.AddHttpClient<CheckoutClient>(client => client.BaseAddress = new Uri(eventHandlerAPI));
 
 
 var app = builder.Build();

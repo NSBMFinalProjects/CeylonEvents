@@ -1,9 +1,13 @@
 ﻿@page "/"
 @using frontend.Clients
 @using frontend.Components.index
-@inject NavigationManager NavigationManager
 @using frontend.Models
+@inject NavigationManager NavigationManager
 @inject UserClient UserClient
+@inject IToastService toastService
+@inject EventClient EventClient
+
+@rendermode InteractiveServer
 
 
 <PageTitle>CeylonEvents</PageTitle>
@@ -81,13 +85,23 @@
         </div>
 
         <div class="row row-cols-1 row-cols-md-2 g-5 justify-content-center" style="margin-top: 150px;">
-            @foreach (var currentEvent in CurrentEvents)
+            @if (CurrentEvents is null)
             {
-                <div class="col">
-                    <EventCard EventName="@currentEvent.EventName" Date="@currentEvent.EventDate.ToString("dddd, dd MMMM yyyy")"
-                        Time="@currentEvent.EventDate.ToString("hh:mm tt")" Location="@currentEvent.EventLocation"
-                        CardImgUrl="@currentEvent.EventImgUrl" />
-                </div>
+                <p
+                    style="font-size: 20px; color: #a91215; font-family: 'Poppins'; text-align: center; margin-bottom: 200px;">
+                    Sorry! No any event found.
+                </p>
+            }
+            else
+            {
+                @foreach (var currentEvent in CurrentEvents)
+                {
+                    <div class="col">
+                        <EventCard EventName="@currentEvent.EventName" Date="@currentEvent.EventDate"
+                            Time="@currentEvent.EventTime" Location="@currentEvent.EventLocation"
+                            CardImgUrl="@currentEvent.EventImage" EventId="@currentEvent.EventId"/>
+                    </div>
+                }
             }
 
         </div>
@@ -107,16 +121,16 @@
             <div class="radio-inputs">
                 <label class="radio">
                     <input type="radio" name="radio" checked=""
-                        @onchange="@(()=>ChangeSelectedCategory("special", "Special"))">
+                        @onchange="@(()=>ChangeSelectedCategory("Conference", "Special"))">
                     <span class="name">Special Events</span>
                 </label>
                 <label class="radio">
-                    <input type="radio" name="radio" @onchange="@(()=>ChangeSelectedCategory("music", "Musical"))">
+                    <input type="radio" name="radio" @onchange="@(()=>ChangeSelectedCategory("Concert", "Musical"))">
                     <span class="name">Musical Events</span>
                 </label>
 
                 <label class="radio">
-                    <input type="radio" name="radio" @onchange="@(()=>ChangeSelectedCategory("edu", "Educational"))">
+                    <input type="radio" name="radio" @onchange="@(()=>ChangeSelectedCategory("WorkShop", "Educational"))">
                     <span class="name">Educational Events</span>
                 </label>
                 <label class="radio">
@@ -143,27 +157,35 @@
             </div>
             <div style="width: 178px; height: 5px; background-color: #a91215"></div>
             <div class="row row-cols-1 row-cols-md-2 g-5 justify-content-center" style="margin-top: 100px;">
-                @{
-                    EventFounded = false;
-                }
-                @foreach (var currentEvent in CurrentEvents)
-                {
-                    @if (CurrentEventCategory == currentEvent.EventCategory)
-                    {
-                        EventFounded = true;
-                        <div class="col">
-                            <EventCard EventName="@currentEvent.EventName" Date="@currentEvent.EventDate.ToString("dddd, dd MMMM yyyy")"
-                                Time="@currentEvent.EventDate.ToString("hh:mm tt")" Location="@currentEvent.EventLocation"
-                                CardImgUrl="@currentEvent.EventImgUrl" />
-                        </div>
-                    }
-                }
-                @if (!EventFounded)
+                @if (CurrentEvents is null)
                 {
                     <p
                         style="font-size: 20px; color: #a91215; font-family: 'Poppins'; text-align: center; margin-bottom: 100px;">
-                        Sorry! No any event found in this category.
+                        Sorry! No any event found.
                     </p>
+                }
+                else
+                {
+                    EventFounded = false;
+                    @foreach (var currentEvent in CurrentEvents)
+                    {
+                        @if (CurrentEventCategory == currentEvent.EventCategory)
+                        {
+                            EventFounded = true;
+                            <div class="col">
+                                <EventCard EventName="@currentEvent.EventName" Date="@currentEvent.EventDate"
+                                    Time="@currentEvent.EventTime" Location="@currentEvent.EventLocation"
+                                    CardImgUrl="@currentEvent.EventImage" EventId="@currentEvent.EventId" />
+                            </div>
+                        }
+                    }
+                    @if (!EventFounded)
+                    {
+                        <p
+                            style="font-size: 20px; color: #a91215; font-family: 'Poppins'; text-align: center; margin-bottom: 100px;">
+                            Sorry! No any event found in this category.
+                        </p>
+                    }
                 }
             </div>
         </div>
@@ -199,20 +221,22 @@
     private bool EventFounded;
     private string CategoryTittle = "Special";
 
-    private EventResponce[] CurrentEvents =
-    [
-    new(){
-EventName = "TestEvent",
-EventDate = new DateTime(2024, 10, 01, 10, 30, 0),
-EventDescription = "Test Dscription",
-EventLocation = "Test location",
-EventCategory = "special",
-EventTicketPrice =
-12000,EventId = 1,
-IsVerifiedEvent = true,
-EventImgUrl = "Assets/flyer1.jpg"
-}
-    ];
+    private List<EventResponce>? CurrentEvents;
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        try
+        {
+            CurrentEvents = await EventClient.GetAllEvents();
+        }
+        catch (Exception)
+        {
+            toastService.ShowError("Somthing went wrong. Please try again.");
+
+        }
+
+    }
     private void HandleCardClick()
     {
         Console.WriteLine("EventCard clicked");

@@ -33,7 +33,6 @@ namespace frontend.Models
         [Required(ErrorMessage = "Re enter your password")]
         [StringLength(20)]
         public string ConfirmePassword { get; set; } = string.Empty;
-
     }
 }
 

@@ -12,7 +12,7 @@ public class EventRequest
     public string EventName { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "Event description is required!")]
-    [StringLength(50)]
+    [StringLength(200)]
     public string Description { get; set; } = string.Empty;
 
     public DateTime StartDate { get; set; }

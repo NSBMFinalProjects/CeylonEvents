@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{48E278C9-575C-44B7-8D90-7ACB0815D54B}|frontend.csproj|e:\\navindu\\nsbm\\sem 2\\sf\\project\\ceylonevents\\frontend\\clients\\userclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{48E278C9-575C-44B7-8D90-7ACB0815D54B}|frontend.csproj|solutionrelative:clients\\userclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48E278C9-575C-44B7-8D90-7ACB0815D54B}|frontend.csproj|e:\\navindu\\nsbm\\sem 2\\sf\\project\\ceylonevents\\frontend\\components\\pages\\profile.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{48E278C9-575C-44B7-8D90-7ACB0815D54B}|frontend.csproj|solutionrelative:components\\pages\\profile.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48E278C9-575C-44B7-8D90-7ACB0815D54B}|frontend.csproj|e:\\navindu\\nsbm\\sem 2\\sf\\project\\ceylonevents\\frontend\\components\\pages\\organizer\\organizerprofile.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{48E278C9-575C-44B7-8D90-7ACB0815D54B}|frontend.csproj|solutionrelative:components\\pages\\organizer\\organizerprofile.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48E278C9-575C-44B7-8D90-7ACB0815D54B}|frontend.csproj|e:\\navindu\\nsbm\\sem 2\\sf\\project\\ceylonevents\\frontend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{48E278C9-575C-44B7-8D90-7ACB0815D54B}|frontend.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserClient.cs",
+              "DocumentMoniker": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\Clients\\UserClient.cs",
+              "RelativeDocumentMoniker": "Clients\\UserClient.cs",
+              "ToolTip": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\Clients\\UserClient.cs",
+              "RelativeToolTip": "Clients\\UserClient.cs",
+              "ViewState": "AQIAACYAAAAAAAAAAAAwwDEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T08:01:27.948Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Profile.razor",
+              "DocumentMoniker": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\Components\\Pages\\Profile.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Profile.razor",
+              "ToolTip": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\Components\\Pages\\Profile.razor*",
+              "RelativeToolTip": "Components\\Pages\\Profile.razor*",
+              "ViewState": "AQIAAEMAAAAAAAAAAAAwwFcAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-02T07:52:56.818Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "OrganizerProfile.razor",
+              "DocumentMoniker": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\Components\\Pages\\Organizer\\OrganizerProfile.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Organizer\\OrganizerProfile.razor",
+              "ToolTip": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\Components\\Pages\\Organizer\\OrganizerProfile.razor",
+              "RelativeToolTip": "Components\\Pages\\Organizer\\OrganizerProfile.razor",
+              "ViewState": "AQIAAHUAAAAAAAAAAAAwwHoAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-02T07:50:04.111Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "E:\\Navindu\\NSBM\\Sem 2\\SF\\Project\\CeylonEvents\\frontend\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAB0AAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T07:35:44.426Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
