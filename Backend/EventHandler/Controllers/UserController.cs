@@ -143,6 +143,7 @@ namespace Api.Controllers
 
             //user tiket gathnam
             var events = await _context.Events
+                .Include(e=>e.tickets)
                 .Include(e => e.category)
                 .Include(e=>e.purchases)
                 .Where(e => e.Id == eventId)
@@ -156,7 +157,7 @@ namespace Api.Controllers
                     EventDate = eventEntity.StartDate.ToString("yyyy-MM-dd"),
                     EventTime = eventEntity.StartDate.ToShortTimeString(),
                     EventLocation = eventEntity.Location,
-                    EventTicketPrice = eventEntity.tickets?.FirstOrDefault()?.Price.ToString("c") ?? "no tickets",
+                    EventTicketPrice = ((int)eventEntity.tickets?.FirstOrDefault()?.Price),
                     EventDescription = eventEntity.Description,
                     PurchesedTikets = eventEntity.purchases.Sum(p => p.Quantity),
                     EventCategory = eventEntity.category.Name,
